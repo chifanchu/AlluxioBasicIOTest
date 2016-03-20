@@ -205,11 +205,13 @@ public class AlluxioBasicIO {
             if (components[0].equals("create")) {
                 int    fileSize = Integer.parseInt(components[2]);
                 //writeLargeFile(new AlluxioURI(fileName), fileName+WORD, fileSize, WriteType.CACHE_THROUGH, MASTER);
-                writeLargeFile(new AlluxioURI(fileName), fileName+WORD, fileSize, WriteType.CACHE_THROUGH, "130.127.133.22");
+                //writeLargeFile(new AlluxioURI(fileName), fileName+WORD, fileSize, WriteType.CACHE_THROUGH, "130.127.133.22");
+                writeLargeFile(new AlluxioURI(fileName), fileName+WORD, fileSize, WriteType.CACHE_THROUGH, NON_SPECIFIED_WORKER);
             } else if (components[0].equals("read")) {
                 Utils.log(Integer.toString(counter++));
                 //readFile(new AlluxioURI(fileName), ReadType.CACHE_PROMOTE, false, MASTER);
-                readFile(new AlluxioURI(fileName), ReadType.CACHE_PROMOTE, false, "130.127.133.22");
+                //readFile(new AlluxioURI(fileName), ReadType.CACHE_PROMOTE, false, "130.127.133.22");
+                readFile(new AlluxioURI(fileName), ReadType.CACHE_PROMOTE, false, NON_SPECIFIED_WORKER);
             }
         }
 

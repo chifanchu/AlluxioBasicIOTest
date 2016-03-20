@@ -17,7 +17,7 @@ public class RandomWorkloadGenerator {
         final int fileNumber = 40;
         final int fileSizeMin = 70; //MB
         final int fileSizeMax = 150; //MB
-        final int totalReadOperation = 1000;
+        final int totalReadOperation = 500;
 
         // generate #fileNumber files with size ranging uniformly from fileSizeMin to fileSizeMax
         for(int i = 0; i < fileNumber; i++) {
