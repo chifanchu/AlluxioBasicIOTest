@@ -32,22 +32,25 @@ public class RandomWorkloadGenerator {
         //create persist /file0.txt [size]
         // generate persisted files which will be used for re-computation
         for (int i=0; i<10; i++) {
-            writer.println("create persist /file" + i + ".txt " +
-                    ThreadLocalRandom.current().nextInt(fileSizeMin, fileSizeMax + 1));
+            writer.println("create /file" + i + ".txt " +
+                    ThreadLocalRandom.current().nextInt(fileSizeMin, fileSizeMax + 1) +
+                    " persist");
             files.add(i);
         }
 
         //create persist /tmp0.txt [size]
         for (int i=0; i<fileNumber * persistRatio; i++) {
-            writer.println("create persist /tmp" + i + ".txt " +
-                    ThreadLocalRandom.current().nextInt(fileSizeMin, fileSizeMax + 1));
+            writer.println("create /tmp" + i + ".txt " +
+                    ThreadLocalRandom.current().nextInt(fileSizeMin, fileSizeMax + 1) +
+                    " persist");
             tmps.add(i);
         }
 
         //create nonpersist /tmp1.txt [size] [files....]
         for (int i=(int)(fileNumber * persistRatio); i<fileNumber; i++) {
-            writer.print("create nonpersist /tmp" + i + ".txt " +
-                    ThreadLocalRandom.current().nextInt(fileSizeMin, fileSizeMax + 1));
+            writer.print("create /tmp" + i + ".txt " +
+                    ThreadLocalRandom.current().nextInt(fileSizeMin, fileSizeMax + 1) +
+                    " nonpersist");
 
             int num = ThreadLocalRandom.current().nextInt(1, recomputeSourceNumberMax);
             long seed = System.nanoTime();

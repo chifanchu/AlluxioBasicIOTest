@@ -213,7 +213,7 @@ public class AlluxioBasicIO {
                 writeLargeFile(new AlluxioURI(fileName), fileName+WORD, fileSize, WriteType.THROUGH, "clnode013.clemson.cloudlab.us");
                 //writeLargeFile(new AlluxioURI(fileName), fileName+WORD, fileSize, WriteType.CACHE_THROUGH, NON_SPECIFIED_WORKER);
 
-                if (components[1].equals("nonpersist")) {
+                if (components[3].equals("nonpersist")) {
                     List<String> list = new ArrayList<String>();
                     for (int i = 4; i<components.length; i++) {
                         list.add(components[i]);
@@ -231,6 +231,7 @@ public class AlluxioBasicIO {
                     } catch (Exception e) {
                         List<String> list = dependency.get(fileName);
                         for(int i=0; i<list.size(); i++) {
+                            Utils.log("     Recomputing files");
                             //readFile(new AlluxioURI(list.get(i)), ReadType.CACHE_PROMOTE, false, MASTER);
                             readFile(new AlluxioURI(list.get(i)), ReadType.CACHE_PROMOTE, false, "clnode013.clemson.cloudlab.us");
                             //readFile(new AlluxioURI(list.get(i)), ReadType.CACHE_PROMOTE, false, NON_SPECIFIED_WORKER);
