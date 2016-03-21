@@ -19,17 +19,19 @@ public class RandomWorkloadGenerator {
         PrintWriter writer = new PrintWriter(System.getProperty("user.dir") + "/prepare.txt", "big5");
 
         // CloudLab setting
-        /*
+
         final int persistFileNumber = 10;
-        final int recomputeSourceNumberMax = (int) (persistFileNumber * 0.7) ;
+        final int persistFileSizeMultiplier = 5;
+        final int recomputeSourceNumberMax = (int) (persistFileNumber * 0.5) ;
         final int fileNumber = 40;
         final double persistRatio = 0.5;
-        final int fileSizeMin = 70; //MB
-        final int fileSizeMax = 150; //MB
+        final int fileSizeMin = 140; //MB
+        final int fileSizeMax = 300; //MB
         final int totalReadOperation = 500;
-        */
+
 
         // VM setting
+        /*
         final int persistFileNumber = 10;
         final int persistFileSizeMultiplier = 5;
         final int recomputeSourceNumberMax = (int) (persistFileNumber * 1.0) ;
@@ -38,6 +40,7 @@ public class RandomWorkloadGenerator {
         final int fileSizeMin = 30; //MB
         final int fileSizeMax = 70; //MB
         final int totalReadOperation = 500;
+        */
 
         List<Integer> files = new ArrayList<Integer>();
 

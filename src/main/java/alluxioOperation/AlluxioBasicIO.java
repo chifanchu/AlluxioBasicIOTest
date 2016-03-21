@@ -304,8 +304,8 @@ public class AlluxioBasicIO {
 
         //alluIO.freeFile(new AlluxioURI(path));
 
-        //String workerHostName = "clnode013.clemson.cloudlab.us";
-        String workerHostName = MASTER;
+        String workerHostName = "clnode013.clemson.cloudlab.us";
+        //String workerHostName = MASTER;
         alluIO.preTask(workerHostName);
         alluIO.doTask(workerHostName);
     }
