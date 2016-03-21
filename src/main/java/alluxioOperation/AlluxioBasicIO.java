@@ -17,7 +17,6 @@ import alluxio.client.file.options.OpenFileOptions;
 import alluxio.exception.AlluxioException;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -77,6 +76,7 @@ public class AlluxioBasicIO {
             Utils.log("     Done!");
         } catch (Exception e) {
             e.printStackTrace();
+            throw new IOException(e);
         }  finally {
             os.close();
         }
@@ -120,6 +120,7 @@ public class AlluxioBasicIO {
             Utils.log("     Done!");
         } catch (Exception e) {
             e.printStackTrace();
+            throw new IOException(e);
         }  finally {
             os.close();
         }
@@ -161,6 +162,7 @@ public class AlluxioBasicIO {
             Utils.log("     Done!");
         } catch (Exception e) {
             e.printStackTrace();
+            throw new IOException(e);
         } finally {
             is.close();
         }
@@ -243,12 +245,12 @@ public class AlluxioBasicIO {
                     try {
                         readFile(new AlluxioURI(fileName), ReadType.CACHE_PROMOTE, false, workerHostName);
                         break;
-                    } catch (Exception e) {
+                    } catch (IOException e) {
                         // remove tmp file from master, read persist files, create tmp file again
                         removeFile(new AlluxioURI(fileName));
                         List<String> list = mDependency.get(fileName);
                         for(int i=0; i<list.size(); i++) {
-                            Utils.log("     Recomputing files");
+                            Utils.log("Recomputing Process");
                             readFile(new AlluxioURI(list.get(i)), ReadType.NO_CACHE, false, workerHostName);
                         }
                         writeLargeFile(new AlluxioURI(fileName), fileName + WORD, mFileSizeMap.get(fileName), WriteType.MUST_CACHE, workerHostName);
@@ -302,7 +304,8 @@ public class AlluxioBasicIO {
 
         //alluIO.freeFile(new AlluxioURI(path));
 
-        String workerHostName = "clnode013.clemson.cloudlab.us";
+        //String workerHostName = "clnode013.clemson.cloudlab.us";
+        String workerHostName = MASTER;
         alluIO.preTask(workerHostName);
         alluIO.doTask(workerHostName);
     }

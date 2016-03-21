@@ -18,22 +18,38 @@ public class RandomWorkloadGenerator {
         //System.out.println("Working Directory = " + System.getProperty("user.dir"));
         PrintWriter writer = new PrintWriter(System.getProperty("user.dir") + "/prepare.txt", "big5");
 
-        List<Integer> files = new ArrayList<Integer>();
+        // CloudLab setting
+        /*
         final int persistFileNumber = 10;
         final int recomputeSourceNumberMax = (int) (persistFileNumber * 0.7) ;
-
-        List<Integer> tmps = new ArrayList<Integer>();
         final int fileNumber = 40;
         final double persistRatio = 0.5;
         final int fileSizeMin = 70; //MB
         final int fileSizeMax = 150; //MB
         final int totalReadOperation = 500;
+        */
+
+        // VM setting
+        final int persistFileNumber = 10;
+        final int persistFileSizeMultiplier = 5;
+        final int recomputeSourceNumberMax = (int) (persistFileNumber * 1.0) ;
+        final int fileNumber = 30;
+        final double persistRatio = 0.3;
+        final int fileSizeMin = 30; //MB
+        final int fileSizeMax = 70; //MB
+        final int totalReadOperation = 500;
+
+        List<Integer> files = new ArrayList<Integer>();
+
+        List<Integer> tmps = new ArrayList<Integer>();
 
         //create persist /file0.txt [size]
         // generate persisted files which will be used for re-computation
         for (int i=0; i<10; i++) {
             writer.println("create /file" + i + ".txt " +
-                    ThreadLocalRandom.current().nextInt(fileSizeMin, fileSizeMax + 1) +
+                    ThreadLocalRandom.current().nextInt(
+                            fileSizeMin * persistFileSizeMultiplier,
+                            fileSizeMax *persistFileSizeMultiplier + 1) +
                     " persist");
             files.add(i);
         }
@@ -63,9 +79,9 @@ public class RandomWorkloadGenerator {
         }
         writer.close();
 
+        // 圍毆的概念
         //long seed = System.nanoTime();
         //Collections.shuffle(tmps, new Random(seed));
-
 
         // read file
         // generate randomly read workload for all files
