@@ -3,6 +3,10 @@ package workload;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -14,29 +18,62 @@ public class RandomWorkloadGenerator {
         //System.out.println("Working Directory = " + System.getProperty("user.dir"));
         PrintWriter writer = new PrintWriter(System.getProperty("user.dir") + "/task.txt", "big5");
 
+        List<Integer> files = new ArrayList<Integer>();
+        final int persistFileNumber = 10;
+        final int recomputeSourceNumberMax = persistFileNumber/2;
+
+        List<Integer> tmps = new ArrayList<Integer>();
         final int fileNumber = 40;
+        final double persistRatio = 0.5;
         final int fileSizeMin = 70; //MB
         final int fileSizeMax = 150; //MB
         final int totalReadOperation = 500;
 
-        // generate #fileNumber files with size ranging uniformly from fileSizeMin to fileSizeMax
-        for(int i = 0; i < fileNumber; i++) {
-            writer.println("create /tmp" + i + ".txt " +
+        //create persist /file0.txt [size]
+        // generate persisted files which will be used for re-computation
+        for (int i=0; i<10; i++) {
+            writer.println("create persist /file" + i + ".txt " +
                     ThreadLocalRandom.current().nextInt(fileSizeMin, fileSizeMax + 1));
+            files.add(i);
         }
 
-        //for(int j=0; j<2; j++) {
-            // generate randomly read workload for all files
-            for (int i = 0; i < totalReadOperation / 2; i++) {
-                writer.println("read /tmp" +
-                        ThreadLocalRandom.current().nextInt(0, fileNumber) + ".txt");
-            }
+        //create persist /tmp0.txt [size]
+        for (int i=0; i<fileNumber * persistRatio; i++) {
+            writer.println("create persist /tmp" + i + ".txt " +
+                    ThreadLocalRandom.current().nextInt(fileSizeMin, fileSizeMax + 1));
+            tmps.add(i);
+        }
 
-            for (int i = 0; i < totalReadOperation / 2; i++) {
-                writer.println("read /tmp" +
-                        ThreadLocalRandom.current().nextInt(fileNumber/2+1, fileNumber) + ".txt");
+        //create nonpersist /tmp1.txt [size] [files....]
+        for (int i=(int)(fileNumber * persistRatio); i<fileNumber; i++) {
+            writer.print("create nonpersist /tmp" + i + ".txt " +
+                    ThreadLocalRandom.current().nextInt(fileSizeMin, fileSizeMax + 1));
+
+            int num = ThreadLocalRandom.current().nextInt(1, recomputeSourceNumberMax);
+            long seed = System.nanoTime();
+            Collections.shuffle(files, new Random(seed));
+            for (int j=0; j<num; j++) {
+                writer.print(" /file" + files.get(j) + ".txt");
             }
-        //}
+            writer.print("\n");
+            tmps.add(i);
+        }
+
+        //long seed = System.nanoTime();
+        //Collections.shuffle(tmps, new Random(seed));
+
+        // read file
+        // generate randomly read workload for all files
+        for (int i = 0; i < totalReadOperation / 2; i++) {
+            writer.println("read /tmp" +
+                    tmps.get(ThreadLocalRandom.current().nextInt(0, fileNumber)) + ".txt");
+        }
+
+        for (int i = 0; i < totalReadOperation / 2; i++) {
+            writer.println("read /tmp" +
+                    tmps.get(ThreadLocalRandom.current().nextInt(fileNumber/2+1, fileNumber)) + ".txt");
+        }
         writer.close();
     }
+
 }

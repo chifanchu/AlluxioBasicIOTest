@@ -22,7 +22,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
-
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -195,6 +198,8 @@ public class AlluxioBasicIO {
         TimeMeasure tm = new TimeMeasure();
         tm.start();
 
+        Map<String, List<String>> dependency = new HashMap<String, List<String>>();
+
         BufferedReader reader = new BufferedReader(new FileReader("task.txt"));
         String line;
         int counter = 0;
@@ -205,13 +210,33 @@ public class AlluxioBasicIO {
             if (components[0].equals("create")) {
                 int    fileSize = Integer.parseInt(components[2]);
                 //writeLargeFile(new AlluxioURI(fileName), fileName+WORD, fileSize, WriteType.CACHE_THROUGH, MASTER);
-                writeLargeFile(new AlluxioURI(fileName), fileName+WORD, fileSize, WriteType.CACHE_THROUGH, "clnode013.clemson.cloudlab.us");
+                writeLargeFile(new AlluxioURI(fileName), fileName+WORD, fileSize, WriteType.THROUGH, "clnode013.clemson.cloudlab.us");
                 //writeLargeFile(new AlluxioURI(fileName), fileName+WORD, fileSize, WriteType.CACHE_THROUGH, NON_SPECIFIED_WORKER);
+
+                if (components[1].equals("nonpersist")) {
+                    List<String> list = new ArrayList<String>();
+                    for (int i = 4; i<components.length; i++) {
+                        list.add(components[i]);
+                    }
+                    dependency.put(fileName, list);
+                }
             } else if (components[0].equals("read")) {
                 Utils.log(Integer.toString(counter++));
-                //readFile(new AlluxioURI(fileName), ReadType.CACHE_PROMOTE, false, MASTER);
-                readFile(new AlluxioURI(fileName), ReadType.CACHE_PROMOTE, false, "clnode013.clemson.cloudlab.us");
-                //readFile(new AlluxioURI(fileName), ReadType.CACHE_PROMOTE, false, NON_SPECIFIED_WORKER);
+                while(true) {
+                    try {
+                        //readFile(new AlluxioURI(fileName), ReadType.CACHE_PROMOTE, false, MASTER);
+                        readFile(new AlluxioURI(fileName), ReadType.CACHE_PROMOTE, false, "clnode013.clemson.cloudlab.us");
+                        //readFile(new AlluxioURI(fileName), ReadType.CACHE_PROMOTE, false, NON_SPECIFIED_WORKER);
+                        break;
+                    } catch (Exception e) {
+                        List<String> list = dependency.get(fileName);
+                        for(int i=0; i<list.size(); i++) {
+                            //readFile(new AlluxioURI(list.get(i)), ReadType.CACHE_PROMOTE, false, MASTER);
+                            readFile(new AlluxioURI(list.get(i)), ReadType.CACHE_PROMOTE, false, "clnode013.clemson.cloudlab.us");
+                            //readFile(new AlluxioURI(list.get(i)), ReadType.CACHE_PROMOTE, false, NON_SPECIFIED_WORKER);
+                        }
+                    }
+                }
             }
         }
 
