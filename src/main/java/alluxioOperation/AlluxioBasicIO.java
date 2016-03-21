@@ -40,6 +40,9 @@ public class AlluxioBasicIO {
 
     private final FileSystem mFileSystem;
 
+    private final Map<String, List<String>> mDependency = new HashMap<String, List<String>>();
+    private final Map<String, Integer> mFileSizeMap = new HashMap<String, Integer>();
+
 
     // use all default and alluxio-site configurations
     private AlluxioBasicIO() {
@@ -192,13 +195,40 @@ public class AlluxioBasicIO {
         Utils.log("ElapsedTime = " + tm.getElapsedTime() + " ms");
     }
 
-    public void doTask() throws IOException, AlluxioException {
+    public void preTask(String workerHostName) throws IOException, AlluxioException {
+        Utils.log("Prepare task...");
+
+        BufferedReader reader = new BufferedReader(new FileReader("prepare.txt"));
+        String line;
+        while((line = reader.readLine()) != null) {
+            String[] components = line.split(" ");
+            String fileName = components[1];
+
+            if (components[0].equals("create")) {
+                int fileSize = Integer.parseInt(components[2]);
+
+                boolean isPersist = components[3].equals("persist");
+                if (isPersist) {
+                    writeLargeFile(new AlluxioURI(fileName), fileName + WORD, fileSize, WriteType.THROUGH, workerHostName);
+                } else {
+                    List<String> list = new ArrayList<String>();
+                    for (int i = 4; i < components.length; i++) {
+                        list.add(components[i]);
+                    }
+                    mDependency.put(fileName, list);
+
+                    writeLargeFile(new AlluxioURI(fileName), fileName + WORD, fileSize, WriteType.MUST_CACHE, workerHostName);
+                }
+                mFileSizeMap.put(fileName, fileSize);
+            }
+        }
+    }
+
+    public void doTask(String workerHostName) throws IOException, AlluxioException {
         Utils.log("Starting task...");
 
         TimeMeasure tm = new TimeMeasure();
         tm.start();
-
-        Map<String, List<String>> dependency = new HashMap<String, List<String>>();
 
         BufferedReader reader = new BufferedReader(new FileReader("task.txt"));
         String line;
@@ -207,35 +237,21 @@ public class AlluxioBasicIO {
             String[] components = line.split(" ");
             String fileName = components[1];
 
-            if (components[0].equals("create")) {
-                int    fileSize = Integer.parseInt(components[2]);
-                //writeLargeFile(new AlluxioURI(fileName), fileName+WORD, fileSize, WriteType.CACHE_THROUGH, MASTER);
-                writeLargeFile(new AlluxioURI(fileName), fileName+WORD, fileSize, WriteType.THROUGH, "clnode013.clemson.cloudlab.us");
-                //writeLargeFile(new AlluxioURI(fileName), fileName+WORD, fileSize, WriteType.CACHE_THROUGH, NON_SPECIFIED_WORKER);
-
-                if (components[3].equals("nonpersist")) {
-                    List<String> list = new ArrayList<String>();
-                    for (int i = 4; i<components.length; i++) {
-                        list.add(components[i]);
-                    }
-                    dependency.put(fileName, list);
-                }
-            } else if (components[0].equals("read")) {
+            if (components[0].equals("read")) {
                 Utils.log(Integer.toString(counter++));
                 while(true) {
                     try {
-                        //readFile(new AlluxioURI(fileName), ReadType.CACHE_PROMOTE, false, MASTER);
-                        readFile(new AlluxioURI(fileName), ReadType.CACHE_PROMOTE, false, "clnode013.clemson.cloudlab.us");
-                        //readFile(new AlluxioURI(fileName), ReadType.CACHE_PROMOTE, false, NON_SPECIFIED_WORKER);
+                        readFile(new AlluxioURI(fileName), ReadType.CACHE_PROMOTE, false, workerHostName);
                         break;
                     } catch (Exception e) {
-                        List<String> list = dependency.get(fileName);
+                        // remove tmp file from master, read persist files, create tmp file again
+                        removeFile(new AlluxioURI(fileName));
+                        List<String> list = mDependency.get(fileName);
                         for(int i=0; i<list.size(); i++) {
                             Utils.log("     Recomputing files");
-                            //readFile(new AlluxioURI(list.get(i)), ReadType.CACHE_PROMOTE, false, MASTER);
-                            readFile(new AlluxioURI(list.get(i)), ReadType.CACHE_PROMOTE, false, "clnode013.clemson.cloudlab.us");
-                            //readFile(new AlluxioURI(list.get(i)), ReadType.CACHE_PROMOTE, false, NON_SPECIFIED_WORKER);
+                            readFile(new AlluxioURI(list.get(i)), ReadType.NO_CACHE, false, workerHostName);
                         }
+                        writeLargeFile(new AlluxioURI(fileName), fileName + WORD, mFileSizeMap.get(fileName), WriteType.MUST_CACHE, workerHostName);
                     }
                 }
             }
@@ -286,6 +302,8 @@ public class AlluxioBasicIO {
 
         //alluIO.freeFile(new AlluxioURI(path));
 
-        alluIO.doTask();
+        String workerHostName = "clnode013.clemson.cloudlab.us";
+        alluIO.preTask(workerHostName);
+        alluIO.doTask(workerHostName);
     }
 }

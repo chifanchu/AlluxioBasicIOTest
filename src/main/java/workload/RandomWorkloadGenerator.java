@@ -16,11 +16,11 @@ import java.util.concurrent.ThreadLocalRandom;
 public class RandomWorkloadGenerator {
     public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
         //System.out.println("Working Directory = " + System.getProperty("user.dir"));
-        PrintWriter writer = new PrintWriter(System.getProperty("user.dir") + "/task.txt", "big5");
+        PrintWriter writer = new PrintWriter(System.getProperty("user.dir") + "/prepare.txt", "big5");
 
         List<Integer> files = new ArrayList<Integer>();
         final int persistFileNumber = 10;
-        final int recomputeSourceNumberMax = persistFileNumber/2;
+        final int recomputeSourceNumberMax = (int) (persistFileNumber * 0.7) ;
 
         List<Integer> tmps = new ArrayList<Integer>();
         final int fileNumber = 40;
@@ -61,12 +61,15 @@ public class RandomWorkloadGenerator {
             writer.print("\n");
             tmps.add(i);
         }
+        writer.close();
 
         //long seed = System.nanoTime();
         //Collections.shuffle(tmps, new Random(seed));
 
+
         // read file
         // generate randomly read workload for all files
+        writer = new PrintWriter(System.getProperty("user.dir") + "/task.txt", "big5");
         for (int i = 0; i < totalReadOperation / 2; i++) {
             writer.println("read /tmp" +
                     tmps.get(ThreadLocalRandom.current().nextInt(0, fileNumber)) + ".txt");
