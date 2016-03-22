@@ -18,86 +18,47 @@ public class RandomWorkloadGenerator {
         //System.out.println("Working Directory = " + System.getProperty("user.dir"));
         PrintWriter writer = new PrintWriter(System.getProperty("user.dir") + "/prepare.txt", "big5");
 
-        // CloudLab setting
 
-        final int persistFileNumber = 10;
-        final int persistFileSizeMultiplier = 5;
-        final int recomputeSourceNumberMax = (int) (persistFileNumber * 0.5) ;
-        final int fileNumber = 40;
-        final double persistRatio = 0.5;
-        final int fileSizeMin = 140; //MB
+        final int reduceSpeedMultiplier = 10;
+        final int totalFileNumber = 40;
+        final int fileSizeMin = 150; //MB
         final int fileSizeMax = 300; //MB
+
         final int totalReadOperation = 500;
 
 
-        // VM setting
-        /*
-        final int persistFileNumber = 10;
-        final int persistFileSizeMultiplier = 5;
-        final int recomputeSourceNumberMax = (int) (persistFileNumber * 1.0) ;
-        final int fileNumber = 30;
-        final double persistRatio = 0.3;
-        final int fileSizeMin = 30; //MB
-        final int fileSizeMax = 70; //MB
-        final int totalReadOperation = 500;
-        */
-
-        List<Integer> files = new ArrayList<Integer>();
+        // output reduced speed multiplier
+        writer.println(reduceSpeedMultiplier);
 
         List<Integer> tmps = new ArrayList<Integer>();
+        // create persist file
+        for (int i=0; i<totalFileNumber; i++ ) {
+            int size = ThreadLocalRandom.current().nextInt(fileSizeMin, fileSizeMax + 1);
+            writer.println("create /tmp" + i + ".txt " + size);
+            writer.println("create /file" + i + ".txt " + size);
 
-        //create persist /file0.txt [size]
-        // generate persisted files which will be used for re-computation
-        for (int i=0; i<10; i++) {
-            writer.println("create /file" + i + ".txt " +
-                    ThreadLocalRandom.current().nextInt(
-                            fileSizeMin * persistFileSizeMultiplier,
-                            fileSizeMax *persistFileSizeMultiplier + 1) +
-                    " persist");
-            files.add(i);
-        }
-
-        //create persist /tmp0.txt [size]
-        for (int i=0; i<fileNumber * persistRatio; i++) {
-            writer.println("create /tmp" + i + ".txt " +
-                    ThreadLocalRandom.current().nextInt(fileSizeMin, fileSizeMax + 1) +
-                    " persist");
             tmps.add(i);
         }
 
-        //create nonpersist /tmp1.txt [size] [files....]
-        for (int i=(int)(fileNumber * persistRatio); i<fileNumber; i++) {
-            writer.print("create /tmp" + i + ".txt " +
-                    ThreadLocalRandom.current().nextInt(fileSizeMin, fileSizeMax + 1) +
-                    " nonpersist");
-
-            int num = ThreadLocalRandom.current().nextInt(1, recomputeSourceNumberMax);
-            long seed = System.nanoTime();
-            Collections.shuffle(files, new Random(seed));
-            for (int j=0; j<num; j++) {
-                writer.print(" /file" + files.get(j) + ".txt");
-            }
-            writer.print("\n");
-            tmps.add(i);
-        }
         writer.close();
-
-        // 圍毆的概念
-        //long seed = System.nanoTime();
-        //Collections.shuffle(tmps, new Random(seed));
-
-        // read file
-        // generate randomly read workload for all files
         writer = new PrintWriter(System.getProperty("user.dir") + "/task.txt", "big5");
+
+        long seed = System.nanoTime();
+        Collections.shuffle(tmps, new Random(seed));
+
+        // create task
         for (int i = 0; i < totalReadOperation / 2; i++) {
-            writer.println("read /tmp" +
-                    tmps.get(ThreadLocalRandom.current().nextInt(0, fileNumber)) + ".txt");
+            int index = tmps.get(ThreadLocalRandom.current().nextInt(0, totalFileNumber));
+
+            writer.println("read " + index + " /tmp" + index + ".txt");
         }
 
         for (int i = 0; i < totalReadOperation / 2; i++) {
-            writer.println("read /tmp" +
-                    tmps.get(ThreadLocalRandom.current().nextInt(fileNumber/2+1, fileNumber)) + ".txt");
+            int index = tmps.get(ThreadLocalRandom.current().nextInt(totalFileNumber / 2 + 1, totalFileNumber));
+
+            writer.println("read " + index + " /tmp" + index + ".txt");
         }
+
         writer.close();
     }
 

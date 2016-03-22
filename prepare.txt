@@ -1,50 +1,81 @@
-create /file0.txt 1076 persist
-create /file1.txt 942 persist
-create /file2.txt 959 persist
-create /file3.txt 1323 persist
-create /file4.txt 994 persist
-create /file5.txt 785 persist
-create /file6.txt 1466 persist
-create /file7.txt 820 persist
-create /file8.txt 894 persist
-create /file9.txt 838 persist
-create /tmp0.txt 234 persist
-create /tmp1.txt 154 persist
-create /tmp2.txt 160 persist
-create /tmp3.txt 159 persist
-create /tmp4.txt 237 persist
-create /tmp5.txt 206 persist
-create /tmp6.txt 231 persist
-create /tmp7.txt 253 persist
-create /tmp8.txt 176 persist
-create /tmp9.txt 147 persist
-create /tmp10.txt 277 persist
-create /tmp11.txt 226 persist
-create /tmp12.txt 150 persist
-create /tmp13.txt 201 persist
-create /tmp14.txt 289 persist
-create /tmp15.txt 242 persist
-create /tmp16.txt 175 persist
-create /tmp17.txt 218 persist
-create /tmp18.txt 265 persist
-create /tmp19.txt 191 persist
-create /tmp20.txt 163 nonpersist /file1.txt /file5.txt /file9.txt /file7.txt
-create /tmp21.txt 259 nonpersist /file5.txt /file4.txt /file1.txt
-create /tmp22.txt 255 nonpersist /file8.txt /file0.txt
-create /tmp23.txt 212 nonpersist /file5.txt /file2.txt /file0.txt
-create /tmp24.txt 275 nonpersist /file1.txt
-create /tmp25.txt 176 nonpersist /file0.txt /file7.txt
-create /tmp26.txt 185 nonpersist /file4.txt /file7.txt /file0.txt
-create /tmp27.txt 216 nonpersist /file4.txt
-create /tmp28.txt 191 nonpersist /file0.txt
-create /tmp29.txt 151 nonpersist /file4.txt
-create /tmp30.txt 284 nonpersist /file9.txt /file5.txt /file2.txt
-create /tmp31.txt 172 nonpersist /file7.txt /file3.txt /file0.txt /file2.txt
-create /tmp32.txt 229 nonpersist /file0.txt
-create /tmp33.txt 289 nonpersist /file3.txt
-create /tmp34.txt 258 nonpersist /file1.txt /file5.txt /file6.txt
-create /tmp35.txt 233 nonpersist /file2.txt
-create /tmp36.txt 226 nonpersist /file2.txt /file9.txt /file1.txt /file0.txt
-create /tmp37.txt 287 nonpersist /file8.txt /file3.txt
-create /tmp38.txt 237 nonpersist /file1.txt /file8.txt /file0.txt
-create /tmp39.txt 229 nonpersist /file1.txt
+10
+create /tmp0.txt 267
+create /file0.txt 267
+create /tmp1.txt 195
+create /file1.txt 195
+create /tmp2.txt 260
+create /file2.txt 260
+create /tmp3.txt 193
+create /file3.txt 193
+create /tmp4.txt 155
+create /file4.txt 155
+create /tmp5.txt 296
+create /file5.txt 296
+create /tmp6.txt 210
+create /file6.txt 210
+create /tmp7.txt 150
+create /file7.txt 150
+create /tmp8.txt 234
+create /file8.txt 234
+create /tmp9.txt 247
+create /file9.txt 247
+create /tmp10.txt 262
+create /file10.txt 262
+create /tmp11.txt 267
+create /file11.txt 267
+create /tmp12.txt 177
+create /file12.txt 177
+create /tmp13.txt 153
+create /file13.txt 153
+create /tmp14.txt 188
+create /file14.txt 188
+create /tmp15.txt 175
+create /file15.txt 175
+create /tmp16.txt 241
+create /file16.txt 241
+create /tmp17.txt 215
+create /file17.txt 215
+create /tmp18.txt 279
+create /file18.txt 279
+create /tmp19.txt 257
+create /file19.txt 257
+create /tmp20.txt 217
+create /file20.txt 217
+create /tmp21.txt 195
+create /file21.txt 195
+create /tmp22.txt 201
+create /file22.txt 201
+create /tmp23.txt 297
+create /file23.txt 297
+create /tmp24.txt 228
+create /file24.txt 228
+create /tmp25.txt 228
+create /file25.txt 228
+create /tmp26.txt 195
+create /file26.txt 195
+create /tmp27.txt 243
+create /file27.txt 243
+create /tmp28.txt 187
+create /file28.txt 187
+create /tmp29.txt 258
+create /file29.txt 258
+create /tmp30.txt 268
+create /file30.txt 268
+create /tmp31.txt 219
+create /file31.txt 219
+create /tmp32.txt 263
+create /file32.txt 263
+create /tmp33.txt 291
+create /file33.txt 291
+create /tmp34.txt 263
+create /file34.txt 263
+create /tmp35.txt 158
+create /file35.txt 158
+create /tmp36.txt 200
+create /file36.txt 200
+create /tmp37.txt 260
+create /file37.txt 260
+create /tmp38.txt 287
+create /file38.txt 287
+create /tmp39.txt 233
+create /file39.txt 233

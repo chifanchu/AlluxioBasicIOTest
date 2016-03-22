@@ -1,5 +1,6 @@
 package alluxioOperation;
 
+import alluxio.client.file.URIStatus;
 import common.Utils;
 import common.Utils.TimeMeasure;
 
@@ -39,8 +40,7 @@ public class AlluxioBasicIO {
 
     private final FileSystem mFileSystem;
 
-    private final Map<String, List<String>> mDependency = new HashMap<String, List<String>>();
-    private final Map<String, Integer> mFileSizeMap = new HashMap<String, Integer>();
+    private int mReducedSpeedMultiplier = 1;
 
 
     // use all default and alluxio-site configurations
@@ -197,31 +197,27 @@ public class AlluxioBasicIO {
         Utils.log("ElapsedTime = " + tm.getElapsedTime() + " ms");
     }
 
+    public boolean inMemory(String fileName) throws AlluxioException, IOException {
+        URIStatus status = mFileSystem.getStatus(new AlluxioURI(fileName));
+        return status.getInMemoryPercentage() == 100;
+    }
+
     public void preTask(String workerHostName) throws IOException, AlluxioException {
         Utils.log("Prepare task...");
 
         BufferedReader reader = new BufferedReader(new FileReader("prepare.txt"));
         String line;
+
+        line = reader.readLine();
+        mReducedSpeedMultiplier = Integer.parseInt(line);
+
         while((line = reader.readLine()) != null) {
             String[] components = line.split(" ");
             String fileName = components[1];
 
             if (components[0].equals("create")) {
                 int fileSize = Integer.parseInt(components[2]);
-
-                boolean isPersist = components[3].equals("persist");
-                if (isPersist) {
-                    writeLargeFile(new AlluxioURI(fileName), fileName + WORD, fileSize, WriteType.THROUGH, workerHostName);
-                } else {
-                    List<String> list = new ArrayList<String>();
-                    for (int i = 4; i < components.length; i++) {
-                        list.add(components[i]);
-                    }
-                    mDependency.put(fileName, list);
-
-                    writeLargeFile(new AlluxioURI(fileName), fileName + WORD, fileSize, WriteType.MUST_CACHE, workerHostName);
-                }
-                mFileSizeMap.put(fileName, fileSize);
+                writeLargeFile(new AlluxioURI(fileName), fileName + WORD, fileSize, WriteType.THROUGH, workerHostName);
             }
         }
     }
@@ -237,25 +233,18 @@ public class AlluxioBasicIO {
         int counter = 0;
         while((line = reader.readLine()) != null) {
             String[] components = line.split(" ");
-            String fileName = components[1];
+            int index = Integer.parseInt(components[1]);
+            String fileName = components[2];
 
             if (components[0].equals("read")) {
                 Utils.log(Integer.toString(counter++));
-                while(true) {
-                    try {
-                        readFile(new AlluxioURI(fileName), ReadType.CACHE_PROMOTE, false, workerHostName);
-                        break;
-                    } catch (IOException e) {
-                        // remove tmp file from master, read persist files, create tmp file again
-                        removeFile(new AlluxioURI(fileName));
-                        List<String> list = mDependency.get(fileName);
-                        for(int i=0; i<list.size(); i++) {
-                            Utils.log("Recomputing Process");
-                            readFile(new AlluxioURI(list.get(i)), ReadType.NO_CACHE, false, workerHostName);
-                        }
-                        writeLargeFile(new AlluxioURI(fileName), fileName + WORD, mFileSizeMap.get(fileName), WriteType.MUST_CACHE, workerHostName);
+                if (!inMemory(fileName)) {
+                    String overheadName = "/file" + index + ".txt";
+                    for(int i=0; i<mReducedSpeedMultiplier-1; i++) {
+                        readFile(new AlluxioURI(overheadName), ReadType.NO_CACHE, false, workerHostName);
                     }
                 }
+                readFile(new AlluxioURI(fileName), ReadType.CACHE, false, workerHostName);
             }
         }
 
