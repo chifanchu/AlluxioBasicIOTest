@@ -288,12 +288,12 @@ public class AlluxioBasicIO {
                 if (!inMemory(fileName)) {
                     String overheadFileName = "/file" + index + ".txt";
                     int fileSize = mFileSizeMap.get(overheadFileName);
-                    String path = System.getProperty("user.dir") + fileName;
-                    Path ppath = FileSystems.getDefault().getPath(fileName);
+                    String path = System.getProperty("user.dir") + overheadFileName;
+                    Path ppath = FileSystems.getDefault().getPath(path);
                     for(int i=0; i<mReducedSpeedMultiplier-1; i++) {
                         Utils.log("Reducing speed!!!");
                         writeLargeFileLocal(path, sLongMsg, fileSize);
-                        Utils.log("Reducing speed!!!");
+                        Utils.log("     delete file...");
                         Files.delete(ppath);
                     }
                 }
