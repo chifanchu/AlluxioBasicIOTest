@@ -249,7 +249,9 @@ public class AlluxioBasicIO {
                     int fileSize = mFileSizeMap.get(overheadFileName);
                     AlluxioURI uri = new AlluxioURI(overheadFileName);
                     for(int i=0; i<mReducedSpeedMultiplier-1; i++) {
+                        Utils.log("Reducing speed!!!");
                         writeLargeFile(uri, sLongMsg, fileSize, WriteType.THROUGH, workerHostName);
+                        Utils.log("Reducing speed!!!");
                         removeFile(uri);
                     }
                 }
