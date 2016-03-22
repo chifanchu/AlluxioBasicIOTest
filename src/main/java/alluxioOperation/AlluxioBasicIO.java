@@ -22,6 +22,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -37,6 +39,7 @@ public class AlluxioBasicIO {
     private final FileSystem mFileSystem;
 
     private int mReducedSpeedMultiplier = 1;
+    private Map<String, Integer> mFileSizeMap = new HashMap<String, Integer>();
 
 
 
@@ -216,7 +219,11 @@ public class AlluxioBasicIO {
 
             if (components[0].equals("create")) {
                 int fileSize = Integer.parseInt(components[2]);
-                writeLargeFile(new AlluxioURI(fileName), sLongMsg, fileSize, WriteType.THROUGH, workerHostName);
+                if (fileName.startsWith("/tmp")) {
+                    writeLargeFile(new AlluxioURI(fileName), sLongMsg, fileSize, WriteType.THROUGH, workerHostName);
+                } else  {
+                    mFileSizeMap.put(fileName, fileSize);
+                }
             }
         }
     }
@@ -238,9 +245,12 @@ public class AlluxioBasicIO {
             if (components[0].equals("read")) {
                 Utils.log(Integer.toString(counter++));
                 if (!inMemory(fileName)) {
-                    String overheadName = "/file" + index + ".txt";
+                    String overheadFileName = "/file" + index + ".txt";
+                    int fileSize = mFileSizeMap.get(overheadFileName);
+                    AlluxioURI uri = new AlluxioURI(overheadFileName);
                     for(int i=0; i<mReducedSpeedMultiplier-1; i++) {
-                        readFile(new AlluxioURI(overheadName), ReadType.NO_CACHE, false, workerHostName);
+                        writeLargeFile(uri, sLongMsg, fileSize, WriteType.THROUGH, workerHostName);
+                        removeFile(uri);
                     }
                 }
                 readFile(new AlluxioURI(fileName), ReadType.CACHE, false, workerHostName);
