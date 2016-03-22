@@ -18,10 +18,14 @@ import alluxio.client.file.options.OpenFileOptions;
 import alluxio.exception.AlluxioException;
 
 import java.io.BufferedReader;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -129,6 +133,43 @@ public class AlluxioBasicIO {
         tm.pause();
         Utils.log("     ElapsedTime = " + tm.getElapsedTime() + " ms");
     }
+
+    private void writeLargeFileLocal(String filepath, String msg, double sizeMB)
+            throws IOException, AlluxioException {
+        Utils.log("Writing " + sizeMB + "MB data to " + filepath
+                + " to local disk");
+
+        TimeMeasure tm = new TimeMeasure();
+        tm.start();
+
+        int remainSizeByte = (int)sizeMB*1024*1024;
+        int len = Utils.utf8LenCounter(msg);
+
+        if(remainSizeByte==0 || len==0) {
+            Utils.log("Error: Zero length input!!");
+            return;
+        }
+
+        ByteBuffer buf = ByteBuffer.wrap(msg.getBytes(Charset.forName("UTF-8")));
+        FileOutputStream os = new FileOutputStream(filepath);
+        try {
+            while((remainSizeByte-=len)>0) {
+                os.write(buf.array());
+            }
+            Utils.log("     Done!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new IOException(e);
+        }  finally {
+            os.flush();
+            os.getFD().sync();
+            os.close();
+        }
+
+        tm.pause();
+        Utils.log("     ElapsedTime = " + tm.getElapsedTime() + " ms");
+    }
+
 
     private void readFile(AlluxioURI uri, ReadType type, boolean toPrint)
             throws IOException, AlluxioException {
@@ -247,12 +288,13 @@ public class AlluxioBasicIO {
                 if (!inMemory(fileName)) {
                     String overheadFileName = "/file" + index + ".txt";
                     int fileSize = mFileSizeMap.get(overheadFileName);
-                    AlluxioURI uri = new AlluxioURI(overheadFileName);
+                    String path = System.getProperty("user.dir") + fileName;
+                    Path ppath = FileSystems.getDefault().getPath(fileName);
                     for(int i=0; i<mReducedSpeedMultiplier-1; i++) {
                         Utils.log("Reducing speed!!!");
-                        writeLargeFile(uri, sLongMsg, fileSize, WriteType.THROUGH, workerHostName);
+                        writeLargeFileLocal(path, sLongMsg, fileSize);
                         Utils.log("Reducing speed!!!");
-                        removeFile(uri);
+                        Files.delete(ppath);
                     }
                 }
                 readFile(new AlluxioURI(fileName), ReadType.CACHE, false, workerHostName);
