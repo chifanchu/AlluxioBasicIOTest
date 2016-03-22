@@ -32,10 +32,13 @@ public class AlluxioBasicIO {
     static public final String MASTER  = "AlluxioMaster";
     static public final String WORKER1 = "AlluxioWorker1";
     static public final String NON_SPECIFIED_WORKER = "AnyWorker";
+    private static String sLongMsg;
 
     private final FileSystem mFileSystem;
 
     private int mReducedSpeedMultiplier = 1;
+
+
 
 
     // use all default and alluxio-site configurations
@@ -105,14 +108,6 @@ public class AlluxioBasicIO {
             Utils.log("Error: Zero length input!!");
             return;
         }
-
-        StringBuilder builder = new StringBuilder();
-        int count = 0;
-        while (count < 1000000) {
-            builder.append(msg);
-            count += msg.length();
-        }
-        msg = builder.toString();
 
         ByteBuffer buf = ByteBuffer.wrap(msg.getBytes(Charset.forName("UTF-8")));
         FileOutStream os = getFileOutStream(uri, type, targetWorker);
@@ -221,7 +216,7 @@ public class AlluxioBasicIO {
 
             if (components[0].equals("create")) {
                 int fileSize = Integer.parseInt(components[2]);
-                writeLargeFile(new AlluxioURI(fileName), fileName + WORD, fileSize, WriteType.THROUGH, workerHostName);
+                writeLargeFile(new AlluxioURI(fileName), sLongMsg, fileSize, WriteType.THROUGH, workerHostName);
             }
         }
     }
@@ -296,6 +291,14 @@ public class AlluxioBasicIO {
         //alluIO.removeFile(new AlluxioURI("/tmp90.txt"));
 
         //alluIO.freeFile(new AlluxioURI(path));
+
+        StringBuilder builder = new StringBuilder();
+        int count = 0;
+        while (count < 1000000) {
+            builder.append(WORD);
+            count += WORD.length();
+        }
+        sLongMsg = builder.toString();
 
         String workerHostName = "clnode013.clemson.cloudlab.us";
         //String workerHostName = MASTER;
