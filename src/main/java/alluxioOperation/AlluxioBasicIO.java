@@ -302,7 +302,7 @@ public class AlluxioBasicIO {
                     int fileSize = mFileSizeMap.get(overheadFileName);
                     String path = System.getProperty("user.dir") + overheadFileName;
                     Path ppath = FileSystems.getDefault().getPath(path);
-                    for(int i=0; i<mReducedSpeedMultiplier-1; i++) {
+                    for(int i=0; i<mReducedSpeedMultiplier; i++) {
                         Utils.log("Reducing speed!!!");
                         writeLargeFileLocal(path, sLongMsg, fileSize);
                         Utils.log("     delete file...");
