@@ -106,6 +106,14 @@ public class AlluxioBasicIO {
             return;
         }
 
+        StringBuilder builder = new StringBuilder();
+        int count = 0;
+        while (count < 1000000000) {
+            builder.append(msg);
+            count += msg.length();
+        }
+        msg = builder.toString();
+
         ByteBuffer buf = ByteBuffer.wrap(msg.getBytes(Charset.forName("UTF-8")));
         FileOutStream os = getFileOutStream(uri, type, targetWorker);
         try {
@@ -141,6 +149,7 @@ public class AlluxioBasicIO {
             readOptions.setLocationPolicy(new SpecificHostPolicy(cacheLocation));
         }
         FileInStream is = mFileSystem.openFile(uri, readOptions);
+
 
         //ByteBuffer buf = ByteBuffer.allocate((int) is.remaining());
         //noinspection ResultOfMethodCallIgnored
