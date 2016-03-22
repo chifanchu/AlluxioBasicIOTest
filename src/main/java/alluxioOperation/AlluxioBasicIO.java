@@ -268,17 +268,17 @@ public class AlluxioBasicIO {
                 }
             }
 
-            Utils.log("Getting disk write resources...");
-            Utils.disableOutput();
-
-            String path = System.getProperty("user.dir") + dummy;
-            Path ppath = FileSystems.getDefault().getPath(path);
-            writeLargeFileLocal(path, sLongMsg, mFileSizeMap.get(dummy));
-            Files.delete(ppath);
-
-            Utils.enableOutput();
-            Utils.log("Done");
         }
+        Utils.log("Getting disk write resources...");
+        Utils.disableOutput();
+
+        String path = System.getProperty("user.dir") + dummy;
+        Path ppath = FileSystems.getDefault().getPath(path);
+        writeLargeFileLocal(path, sLongMsg, mFileSizeMap.get(dummy));
+        Files.delete(ppath);
+
+        Utils.enableOutput();
+        Utils.log("Done");
     }
 
     public void doTask(String workerHostName) throws IOException, AlluxioException {
