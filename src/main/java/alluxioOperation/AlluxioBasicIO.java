@@ -108,7 +108,7 @@ public class AlluxioBasicIO {
 
         StringBuilder builder = new StringBuilder();
         int count = 0;
-        while (count < 1000000000) {
+        while (count < 1000000) {
             builder.append(msg);
             count += msg.length();
         }
