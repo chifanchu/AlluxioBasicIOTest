@@ -24,7 +24,7 @@ public class RandomWorkloadGenerator {
         final int fileSizeMin = 75; //MB
         final int fileSizeMax = 150; //MB
 
-        final int totalReadOperation = 500;
+        final int totalReadOperation = 250;
 
 
         // output reduced speed multiplier

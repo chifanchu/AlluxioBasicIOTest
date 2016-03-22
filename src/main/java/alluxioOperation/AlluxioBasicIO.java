@@ -156,7 +156,6 @@ public class AlluxioBasicIO {
             while((remainSizeByte-=len)>0) {
                 os.write(buf.array());
             }
-            Utils.log("     Done!");
         } catch (Exception e) {
             e.printStackTrace();
             throw new IOException(e);
@@ -167,6 +166,7 @@ public class AlluxioBasicIO {
         }
 
         tm.pause();
+        Utils.log("     Done!");
         Utils.log("     ElapsedTime = " + tm.getElapsedTime() + " ms");
     }
 
@@ -201,7 +201,6 @@ public class AlluxioBasicIO {
                     Utils.log(msg);
                 }
             }
-
             Utils.log("     Done!");
         } catch (Exception e) {
             e.printStackTrace();
@@ -254,6 +253,7 @@ public class AlluxioBasicIO {
         line = reader.readLine();
         mReducedSpeedMultiplier = Integer.parseInt(line);
 
+        String dummy = "";
         while((line = reader.readLine()) != null) {
             String[] components = line.split(" ");
             String fileName = components[1];
@@ -263,9 +263,21 @@ public class AlluxioBasicIO {
                 if (fileName.startsWith("/tmp")) {
                     writeLargeFile(new AlluxioURI(fileName), sLongMsg, fileSize, WriteType.THROUGH, workerHostName);
                 } else  {
+                    dummy = fileName;
                     mFileSizeMap.put(fileName, fileSize);
                 }
             }
+
+            Utils.log("Getting disk write resources...");
+            Utils.disableOutput();
+
+            String path = System.getProperty("user.dir") + dummy;
+            Path ppath = FileSystems.getDefault().getPath(path);
+            writeLargeFileLocal(path, sLongMsg, mFileSizeMap.get(dummy));
+            Files.delete(ppath);
+
+            Utils.enableOutput();
+            Utils.log("Done");
         }
     }
 
