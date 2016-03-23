@@ -19,7 +19,7 @@ public class RandomWorkloadGenerator {
         PrintWriter writer = new PrintWriter(System.getProperty("user.dir") + "/prepare.txt", "big5");
 
 
-        final int reduceSpeedMultiplier = 5;
+        final int reduceSpeedMultiplier = 3;
         final int totalFileNumber = 40;
         final int fileSizeMin = 75; //MB
         final int fileSizeMax = 150; //MB
