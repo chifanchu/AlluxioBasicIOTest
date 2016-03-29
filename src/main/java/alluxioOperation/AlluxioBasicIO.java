@@ -193,7 +193,7 @@ public class AlluxioBasicIO {
         //ByteBuffer buf = ByteBuffer.allocate((int) is.remaining());
         //noinspection ResultOfMethodCallIgnored
         try {
-            byte[] bytes = new byte[100000];
+            byte[] bytes = new byte[10000000];
             int bytesRead = 0;
             while ((bytesRead = is.read(bytes)) != -1) {
                 String msg = new String(bytes, 0, bytesRead, Charset.forName("UTF-8"));
@@ -360,7 +360,7 @@ public class AlluxioBasicIO {
 
         StringBuilder builder = new StringBuilder();
         int count = 0;
-        while (count < 1000000) {
+        while (count < 10000000) {
             builder.append(WORD);
             count += WORD.length();
         }
