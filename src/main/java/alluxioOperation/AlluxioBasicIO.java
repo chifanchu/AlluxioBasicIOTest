@@ -366,7 +366,7 @@ public class AlluxioBasicIO {
         }
         sLongMsg = builder.toString();
 
-        String workerHostName = "clnode013.clemson.cloudlab.us";
+        String workerHostName = "cp-1-mgmt-lan";
         //String workerHostName = MASTER;
         alluIO.preTask(workerHostName);
         alluIO.doTask(workerHostName);
