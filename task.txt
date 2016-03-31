@@ -672,7 +672,7 @@ read 8 /tmp8.txt
 read 24 /tmp24.txt
 read 38 /tmp38.txt
 read 25 /tmp25.txt
-read /tmp39.txt
+read 39 /tmp39.txt
 read 35 /tmp35.txt
 read 9 /tmp9.txt
 read 38 /tmp38.txt
