@@ -21,10 +21,10 @@ public class RandomWorkloadGenerator {
 
         final int reduceSpeedMultiplier = 1;
         final int totalFileNumber = 40;
-        final int fileSizeMin = 75; //MB
-        final int fileSizeMax = 150; //MB
+        final int fileSizeMin = 150; //MB
+        final int fileSizeMax = 250; //MB
 
-        final int totalReadOperation = 250;
+        final int totalReadOperation = 1000;
 
 
         // output reduced speed multiplier
@@ -37,7 +37,10 @@ public class RandomWorkloadGenerator {
             writer.println("create /tmp" + i + ".txt " + size);
             writer.println("create /file" + i + ".txt " + size);
 
-            tmps.add(i);
+
+            for (int j=0; j<i+1; j++) {
+                tmps.add(i);
+            }
         }
 
         writer.close();
@@ -47,14 +50,8 @@ public class RandomWorkloadGenerator {
         Collections.shuffle(tmps, new Random(seed));
 
         // create task
-        for (int i = 0; i < totalReadOperation / 2; i++) {
-            int index = tmps.get(ThreadLocalRandom.current().nextInt(0, totalFileNumber));
-
-            writer.println("read " + index + " /tmp" + index + ".txt");
-        }
-
-        for (int i = 0; i < totalReadOperation / 2; i++) {
-            int index = tmps.get(ThreadLocalRandom.current().nextInt(totalFileNumber / 2 + 1, totalFileNumber));
+        for (int i = 0; i < totalReadOperation; i++) {
+            int index = tmps.get(ThreadLocalRandom.current().nextInt(0, tmps.size()));
 
             writer.println("read " + index + " /tmp" + index + ".txt");
         }
