@@ -170,7 +170,6 @@ public class AlluxioBasicIO {
         Utils.log("     ElapsedTime = " + tm.getElapsedTime() + " ms");
     }
 
-
     private void readFile(AlluxioURI uri, ReadType type, boolean toPrint)
             throws IOException, AlluxioException {
         readFile(uri, type, toPrint, NON_SPECIFIED_WORKER);
