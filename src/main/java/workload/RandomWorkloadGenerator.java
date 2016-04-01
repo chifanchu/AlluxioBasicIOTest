@@ -26,19 +26,35 @@ public class RandomWorkloadGenerator {
 
         final int totalReadOperation = 1000;
 
+        final int manyReadOperation = 40;
+        final int fewReadOperation = 10;
+
+
+        // 4G not that active --> first 20 files
+        // 4G active          --> last  20 files
 
         // output reduced speed multiplier
         writer.println(reduceSpeedMultiplier);
 
         List<Integer> tmps = new ArrayList<Integer>();
         // create persist file
-        for (int i=0; i<totalFileNumber; i++ ) {
+        for (int i=0; i<totalFileNumber/2; i++ ) {
             int size = ThreadLocalRandom.current().nextInt(fileSizeMin, fileSizeMax + 1);
             writer.println("create /tmp" + i + ".txt " + size);
             writer.println("create /file" + i + ".txt " + size);
 
+            for (int j=0; j<fewReadOperation; j++) {
+                tmps.add(i);
+            }
+        }
 
-            for (int j=0; j<i+1; j++) {
+        // create persist file
+        for (int i=totalFileNumber/2; i<totalFileNumber; i++ ) {
+            int size = ThreadLocalRandom.current().nextInt(fileSizeMin, fileSizeMax + 1);
+            writer.println("create /tmp" + i + ".txt " + size);
+            writer.println("create /file" + i + ".txt " + size);
+
+            for (int j=0; j<manyReadOperation; j++) {
                 tmps.add(i);
             }
         }
