@@ -368,7 +368,9 @@ public class AlluxioBasicIO {
         String workerHostName = "cp-1-mgmt-lan";
         //String workerHostName = MASTER;
 
-        alluIO.mReducedSpeedMultiplier = Integer.parseInt(args[0]);
+        if (args.length>0) {
+            alluIO.mReducedSpeedMultiplier = Integer.parseInt(args[0]);
+        }
         Utils.log("Reduced disk speed by: " + alluIO.mReducedSpeedMultiplier + "X");
         alluIO.preTask(workerHostName);
         alluIO.doTask(workerHostName);
