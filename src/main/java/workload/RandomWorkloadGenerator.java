@@ -36,7 +36,7 @@ public class RandomWorkloadGenerator {
         // 4G active          --> last  20 files
 
         // output reduced speed multiplier
-        writer.println(reduceSpeedMultiplier);
+        //writer.println(reduceSpeedMultiplier);
 
         List<Integer> tmps = new ArrayList<Integer>();
         // create persist file

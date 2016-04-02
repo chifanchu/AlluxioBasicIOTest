@@ -249,8 +249,8 @@ public class AlluxioBasicIO {
         BufferedReader reader = new BufferedReader(new FileReader("prepare.txt"));
         String line;
 
-        line = reader.readLine();
-        mReducedSpeedMultiplier = Integer.parseInt(line);
+        //line = reader.readLine();
+        //mReducedSpeedMultiplier = Integer.parseInt(line);
 
         String dummy = "";
         while((line = reader.readLine()) != null) {
@@ -367,6 +367,9 @@ public class AlluxioBasicIO {
 
         String workerHostName = "cp-1-mgmt-lan";
         //String workerHostName = MASTER;
+
+        alluIO.mReducedSpeedMultiplier = Integer.parseInt(args[0]);
+        Utils.log("Reduced disk speed by: " + alluIO.mReducedSpeedMultiplier + "X");
         alluIO.preTask(workerHostName);
         alluIO.doTask(workerHostName);
     }
