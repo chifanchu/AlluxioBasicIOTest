@@ -105,7 +105,7 @@ public class ResultParser {
             int tmp = singleResult.mReduceSpeed;
             if (reduceSpeed != tmp) {
                 reduceSpeed = tmp;
-                writer.print("----- Reduced speed " + reduceSpeed + " ----------------------------------------------------\n");
+                writer.print("----------------------------- Reduced speed " + reduceSpeed + " ----------------------------------------------------\n");
             }
             writer.print("Background = " + Boolean.toString(singleResult.mBackground) + ", " +
                          "Global LRU = " + Boolean.toString(singleResult.mGlobalLRU) + ", " +
