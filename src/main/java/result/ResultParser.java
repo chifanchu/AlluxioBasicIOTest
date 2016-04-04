@@ -78,7 +78,7 @@ public class ResultParser {
             singleResult.mBackground = Boolean.parseBoolean(comp[1]);
             singleResult.mGlobalLRU = Boolean.parseBoolean(comp[4]);
             singleResult.mTimeThreshold = Long.parseLong(comp[7]);
-            singleResult.mReduceSpeed = Integer.parseInt(comp[11].split(".")[0]);
+            singleResult.mReduceSpeed = Integer.parseInt(comp[11].split("\\.")[0]);
 
             BufferedReader reader =
                     new BufferedReader(new FileReader(fileEntry.getPath() + fileEntry.getName()));
