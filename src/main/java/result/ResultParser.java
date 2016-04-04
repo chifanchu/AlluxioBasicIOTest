@@ -32,9 +32,11 @@ public class ResultParser {
                 SingleResult elem = mInnerList.get(i);
                 if (!compare(elem, singleResult)) {
                     mInnerList.add(i, singleResult);
-                    break;
+                    return;
                 }
             }
+
+            mInnerList.add(singleResult);
         }
 
         public List<SingleResult> getList() {
