@@ -45,21 +45,19 @@ public class ResultParser {
 
         // return true if first should be placed before second
         private boolean compare(SingleResult first, SingleResult second) {
-            if (first.mReduceSpeed < second.mReduceSpeed)
-                return true;
+            if (first.mReduceSpeed != second.mReduceSpeed) {
+                return first.mReduceSpeed < second.mReduceSpeed;
+            }
 
-            //if (first.mBackground != second.mBackground
-            //        && !first.mBackground)
-            //    return true;
+            if (first.mBackground != second.mBackground) {
+                return !first.mBackground;
+            }
 
-            //if (first.mGlobalLRU != second.mGlobalLRU
-            //        && !first.mGlobalLRU)
-            //    return true;
+            if (first.mGlobalLRU != second.mGlobalLRU) {
+                return !first.mGlobalLRU;
+            }
 
-            if (first.mTimeThreshold < second.mTimeThreshold)
-                return true;
-
-            return false;
+            return first.mTimeThreshold < second.mTimeThreshold;
         }
     }
 
