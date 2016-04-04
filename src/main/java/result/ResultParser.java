@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,7 +25,7 @@ public class ResultParser {
     }
 
     public static class PriorityQueue {
-        private final List<SingleResult> mInnerList = new LinkedList();
+        private final List<SingleResult> mInnerList = new ArrayList<SingleResult>();
 
         public void add(SingleResult singleResult) {
             for (int i=0; i<mInnerList.size(); i++) {
