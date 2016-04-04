@@ -84,6 +84,7 @@ public class ResultParser {
                     new BufferedReader(new FileReader(fileEntry.getPath()));
             String line;
             while((line = reader.readLine()) != null) {
+                line.trim();
                 if (line.startsWith("  --- Task elapsed time =")) {
                     singleResult.mRunTime = Double.parseDouble(line.split(" ")[5]);
                     break;
