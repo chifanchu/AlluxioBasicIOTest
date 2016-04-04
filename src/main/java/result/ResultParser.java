@@ -30,7 +30,7 @@ public class ResultParser {
         public void add(SingleResult singleResult) {
             for (int i=0; i<mInnerList.size(); i++) {
                 SingleResult elem = mInnerList.get(i);
-                if (!compare(elem, singleResult)) {
+                if (compare(singleResult, elem)) {
                     mInnerList.add(i, singleResult);
                     return;
                 }
@@ -48,15 +48,13 @@ public class ResultParser {
             if (first.mReduceSpeed < second.mReduceSpeed)
                 return true;
 
-            if (!first.mBackground)
+            if (first.mBackground != second.mBackground
+                    && !first.mBackground)
                 return true;
-            else if (!second.mBackground)
-                return false;
 
-            if (!first.mGlobalLRU)
+            if (first.mGlobalLRU != second.mGlobalLRU
+                    && !first.mGlobalLRU)
                 return true;
-            else if (!second.mGlobalLRU)
-                return false;
 
             if (first.mTimeThreshold < second.mTimeThreshold)
                 return true;
