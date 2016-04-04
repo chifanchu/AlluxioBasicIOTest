@@ -81,7 +81,7 @@ public class ResultParser {
             singleResult.mReduceSpeed = Integer.parseInt(comp[11].split("\\.")[0]);
 
             BufferedReader reader =
-                    new BufferedReader(new FileReader(fileEntry.getPath() + fileEntry.getName()));
+                    new BufferedReader(new FileReader(fileEntry.getPath()));
             String line;
             while((line = reader.readLine()) != null) {
                 if (line.startsWith("  --- Task elapsed time =")) {
