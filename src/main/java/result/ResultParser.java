@@ -85,7 +85,7 @@ public class ResultParser {
             String line;
             while((line = reader.readLine()) != null) {
                 line = line.trim();
-                if (line.startsWith("  --- Task elapsed time =")) {
+                if (line.startsWith("--- Task elapsed time =")) {
                     singleResult.mRunTime = Double.parseDouble(line.split(" ")[5]);
                     break;
                 }
@@ -100,6 +100,10 @@ public class ResultParser {
 
         int reduceSpeed = -1;
         for (SingleResult singleResult : allResult.getList()) {
+            if (singleResult.mRunTime == -1) {
+                continue;
+            }
+
             int tmp = singleResult.mReduceSpeed;
             if (reduceSpeed != tmp) {
                 reduceSpeed = tmp;
