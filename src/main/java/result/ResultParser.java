@@ -97,9 +97,14 @@ public class ResultParser {
         PrintWriter writer =
                 new PrintWriter(System.getProperty("user.dir") + "/" + OUTPUT_NAME, "big5");
 
+        int reduceSpeed = -1;
         for (SingleResult singleResult : allResult.getList()) {
-            writer.print("Reduced speed = " + Integer.toString(singleResult.mReduceSpeed) + "x, " +
-                         "Background = " + Boolean.toString(singleResult.mBackground) + ", " +
+            int tmp = singleResult.mReduceSpeed;
+            if (reduceSpeed != tmp) {
+                reduceSpeed = tmp;
+                writer.print("----- Reduced speed " + reduceSpeed + " ----------------------------------------------------\n");
+            }
+            writer.print("Background = " + Boolean.toString(singleResult.mBackground) + ", " +
                          "Global LRU = " + Boolean.toString(singleResult.mGlobalLRU) + ", " +
                          "Time threshold = " + Long.toString(singleResult.mTimeThreshold) + "\n");
             writer.print("Run time = " + Double.toString(singleResult.mRunTime) + "\n");
