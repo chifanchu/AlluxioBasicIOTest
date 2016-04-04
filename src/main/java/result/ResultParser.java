@@ -48,13 +48,13 @@ public class ResultParser {
             if (first.mReduceSpeed < second.mReduceSpeed)
                 return true;
 
-            if (first.mBackground != second.mBackground
-                    && !first.mBackground)
-                return true;
+            //if (first.mBackground != second.mBackground
+            //        && !first.mBackground)
+            //    return true;
 
-            if (first.mGlobalLRU != second.mGlobalLRU
-                    && !first.mGlobalLRU)
-                return true;
+            //if (first.mGlobalLRU != second.mGlobalLRU
+            //        && !first.mGlobalLRU)
+            //    return true;
 
             if (first.mTimeThreshold < second.mTimeThreshold)
                 return true;
