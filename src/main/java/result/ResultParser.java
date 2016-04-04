@@ -13,7 +13,7 @@ import java.util.List;
  * Created by nelsonchu on 4/4/16.
  */
 public class ResultParser {
-    public static final String LOG_DIR = System.getProperty("user.dir") + "../log";
+    public static final String LOG_DIR = System.getProperty("user.dir") + "/../log";
     public static final String OUTPUT_NAME = "results.txt";
 
     public static class SingleResult {
