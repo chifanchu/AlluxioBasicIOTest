@@ -1,4 +1,4 @@
-package Result;
+package result;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Parse the Result log files created by runAlluxioTests.py script
+ * Parse the result log files created by runAlluxioTests.py script
  * Created by nelsonchu on 4/4/16.
  */
 public class ResultParser {
