@@ -132,8 +132,8 @@ public class ResultParser {
                         "Time threshold = " + Long.toString(singleResult.mTimeThreshold) + "\n");
             }
             writer.print("Run time: " + Double.toString(singleResult.mRunTime) + " secs,  " +
-                         "Cache miss: " + Integer.toString(singleResult.mCacheMissTimes) + " times,  " +
-                         (originalRuntime == -1 ? "" : "SpeedUp: " + Double.toString(originalRuntime/singleResult.mRunTime)) + "\n");
+                         "Cache miss: " + Integer.toString(singleResult.mCacheMissTimes) + " times" +
+                         (originalRuntime == -1 ? "" : ",   SpeedUp: " + Double.toString(originalRuntime/singleResult.mRunTime)) + "\n");
             writer.print("\n");
         }
         writer.close();
