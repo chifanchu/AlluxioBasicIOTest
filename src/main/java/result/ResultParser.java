@@ -21,6 +21,7 @@ public class ResultParser {
         public boolean mBackground;
         public boolean mGlobalLRU;
         public long mTimeThreshold;
+        public int mCacheMissTimes;
         public double mRunTime = -1;
     }
 
@@ -81,8 +82,13 @@ public class ResultParser {
             BufferedReader reader =
                     new BufferedReader(new FileReader(fileEntry.getPath()));
             String line;
+            int reducingTotal = 0;
             while((line = reader.readLine()) != null) {
                 line = line.trim();
+                if (line.startsWith("--- Reducing speed")) {
+                    reducingTotal++;
+                }
+
                 if (line.startsWith("--- Task elapsed time =")) {
                     singleResult.mRunTime = Double.parseDouble(line.split(" ")[5]);
                     break;
@@ -90,6 +96,7 @@ public class ResultParser {
             }
             reader.close();
 
+            singleResult.mCacheMissTimes = reducingTotal / singleResult.mReduceSpeed;
             allResult.add(singleResult);
         }
 
@@ -110,7 +117,8 @@ public class ResultParser {
             writer.print("Background = " + Boolean.toString(singleResult.mBackground) + ", " +
                          "Global LRU = " + Boolean.toString(singleResult.mGlobalLRU) + ", " +
                          "Time threshold = " + Long.toString(singleResult.mTimeThreshold) + "\n");
-            writer.print("Run time = " + Double.toString(singleResult.mRunTime) + "\n");
+            writer.print("Run time = " + Double.toString(singleResult.mRunTime) + ", " +
+                         "cache miss = " + Integer.toString(singleResult.mCacheMissTimes) + " times\n");
             writer.print("\n");
         }
         writer.close();
