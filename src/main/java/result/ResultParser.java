@@ -117,8 +117,8 @@ public class ResultParser {
             writer.print("Background = " + Boolean.toString(singleResult.mBackground) + ", " +
                          "Global LRU = " + Boolean.toString(singleResult.mGlobalLRU) + ", " +
                          "Time threshold = " + Long.toString(singleResult.mTimeThreshold) + "\n");
-            writer.print("Run time = " + Double.toString(singleResult.mRunTime) + ", " +
-                         "cache miss = " + Integer.toString(singleResult.mCacheMissTimes) + " times\n");
+            writer.print("Run time: " + Double.toString(singleResult.mRunTime) + " secs,  " +
+                         "cache miss: " + Integer.toString(singleResult.mCacheMissTimes) + " times\n");
             writer.print("\n");
         }
         writer.close();
