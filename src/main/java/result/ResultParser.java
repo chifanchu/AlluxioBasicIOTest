@@ -23,6 +23,10 @@ public class ResultParser {
         public long mTimeThreshold;
         public int mCacheMissTimes;
         public double mRunTime = -1;
+
+        public boolean isOriginal() {
+            return !mBackground;
+        }
     }
 
     public static class PriorityQueue {
@@ -104,21 +108,32 @@ public class ResultParser {
                 new PrintWriter(System.getProperty("user.dir") + "/" + OUTPUT_NAME, "big5");
 
         int reduceSpeed = -1;
+        double originalRuntime = -1;
         for (SingleResult singleResult : allResult.getList()) {
             if (singleResult.mRunTime == -1) {
                 continue;
             }
 
-            int tmp = singleResult.mReduceSpeed;
-            if (reduceSpeed != tmp) {
-                reduceSpeed = tmp;
+            if (reduceSpeed != singleResult.mReduceSpeed) {
+                reduceSpeed = singleResult.mReduceSpeed;
+                if (singleResult.isOriginal()) {
+                    originalRuntime = singleResult.mRunTime;
+                } else {
+                    originalRuntime = -1;
+                }
                 writer.print("----------------------------- Reduced speed " + reduceSpeed + " ----------------------------------------------------\n");
             }
-            writer.print("Background = " + Boolean.toString(singleResult.mBackground) + ", " +
-                         "Global LRU = " + Boolean.toString(singleResult.mGlobalLRU) + ", " +
-                         "Time threshold = " + Long.toString(singleResult.mTimeThreshold) + "\n");
+
+            if (singleResult.isOriginal()) {
+                writer.print("Original\n");
+            } else {
+                writer.print("Background = " + Boolean.toString(singleResult.mBackground) + ", " +
+                        "Global LRU = " + Boolean.toString(singleResult.mGlobalLRU) + ", " +
+                        "Time threshold = " + Long.toString(singleResult.mTimeThreshold) + "\n");
+            }
             writer.print("Run time: " + Double.toString(singleResult.mRunTime) + " secs,  " +
-                         "cache miss: " + Integer.toString(singleResult.mCacheMissTimes) + " times\n");
+                         "Cache miss: " + Integer.toString(singleResult.mCacheMissTimes) + " times,  " +
+                         (originalRuntime == -1 ? "" : "SpeedUp: " + Double.toString(originalRuntime/singleResult.mRunTime)) + "\n");
             writer.print("\n");
         }
         writer.close();
