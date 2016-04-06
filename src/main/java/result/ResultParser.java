@@ -121,13 +121,14 @@ public class ResultParser {
                 if (optimalResult != null) {
                     optimalResult.mIsOpt = true;
                 }
+                reduceSpeed = singleResult.mReduceSpeed;
+                optimalTime = Double.MAX_VALUE;
+                optimalResult = null;
+            }
+
+            if (singleResult.mRunTime < optimalTime) {
                 optimalResult = singleResult;
                 optimalTime = singleResult.mRunTime;
-            } else {
-                if (singleResult.mRunTime < optimalTime) {
-                    optimalResult = singleResult;
-                    optimalTime = singleResult.mRunTime;
-                }
             }
         }
         if (optimalResult != null) {
@@ -162,7 +163,7 @@ public class ResultParser {
             writer.print("Run time: " + Double.toString(singleResult.mRunTime) + " secs,  " +
                          "Cache miss: " + Integer.toString(singleResult.mCacheMissTimes) + " times" +
                          (originalRuntime == -1 ? "" : ",   SpeedUp: " + Double.toString(originalRuntime/singleResult.mRunTime)) +
-                         (singleResult.mIsOpt ? "  <-t" : "") + "\n");
+                         (singleResult.mIsOpt ? "  <-" : "") + "\n");
             writer.print("\n");
         }
         writer.close();
