@@ -45,9 +45,6 @@ public class AlluxioBasicIO {
     private int mReducedSpeedMultiplier = 1;
     private Map<String, Integer> mFileSizeMap = new HashMap<String, Integer>();
 
-
-
-
     // use all default and alluxio-site configurations
     private AlluxioBasicIO() {
         Utils.log("Connecting to Master..." + ClientContext.getMasterAddress());
@@ -57,8 +54,6 @@ public class AlluxioBasicIO {
     // use this constructor to specify runtime master hostname
     private AlluxioBasicIO(AlluxioURI masterLocation) {
         ClientContext.getConf().set(Constants.MASTER_HOSTNAME, masterLocation.getHost());
-        //ClientContext.getConf().set(Constants.MASTER_RPC_PORT,
-        //        Integer.toString(masterLocation.getPort()));
         ClientContext.init();
         Utils.log("Connecting to Master..." + ClientContext.getMasterAddress());
         mFileSystem = FileSystem.Factory.get();
@@ -332,28 +327,10 @@ public class AlluxioBasicIO {
         // write larger file, writerType = [CACHE_THROUGH|MUST_CACHE|THROUGH|ASYNC_THROUGH]
         //alluIO.writeLargeFile(new AlluxioURI(path), WORD, 199, WriteType.MUST_CACHE, MASTER);
 
-        //alluIO.writeFile     (new AlluxioURI("/tmp80.txt"), "ABCDEFG", WriteType.MUST_CACHE, MASTER);
-        //alluIO.writeLargeFile(new AlluxioURI("/tmp81.txt"), WORD, 50, WriteType.CACHE_THROUGH, MASTER);
-        //alluIO.writeLargeFile(new AlluxioURI("/tmp82.txt"), WORD, 50, WriteType.CACHE_THROUGH, MASTER);
-        //alluIO.writeLargeFile(new AlluxioURI("/tmp83.txt"), WORD, 50, WriteType.CACHE_THROUGH, MASTER);
-        //alluIO.writeLargeFile(new AlluxioURI("/tmp84.txt"), WORD, 49, WriteType.CACHE_THROUGH, MASTER);
-
-        //alluIO.writeLargeFile(new AlluxioURI("/tmp90.txt"), WORD, 145, WriteType.MUST_CACHE, WORKER1);
-
         // readType = [CACHE_PROMOTE|CACHE|NO_CACHE]
         //alluIO.readFile(new AlluxioURI(path), ReadType.CACHE_PROMOTE, false);
 
         //alluIO.removeFile(new AlluxioURI(path));
-
-        //alluIO.removeFile(new AlluxioURI("/tmp80.txt"));
-        //alluIO.removeFile(new AlluxioURI("/tmp81.txt"));
-        //alluIO.removeFile(new AlluxioURI("/tmp82.txt"));
-        //alluIO.removeFile(new AlluxioURI("/tmp83.txt"));
-        //alluIO.removeFile(new AlluxioURI("/tmp84.txt"));
-        //alluIO.removeFile(new AlluxioURI("/tmp85.txt"));
-        //alluIO.removeFile(new AlluxioURI("/tmp86.txt"));
-
-        //alluIO.removeFile(new AlluxioURI("/tmp90.txt"));
 
         //alluIO.freeFile(new AlluxioURI(path));
 

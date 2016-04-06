@@ -23,6 +23,7 @@ public class ResultParser {
         public long mTimeThreshold;
         public int mCacheMissTimes;
         public double mRunTime = -1;
+        public boolean mIsOpt = false;
 
         public boolean isOriginal() {
             return !mBackground;
@@ -108,6 +109,28 @@ public class ResultParser {
                 new PrintWriter(System.getProperty("user.dir") + "/" + OUTPUT_NAME, "big5");
 
         int reduceSpeed = -1;
+        double optimalTime = Double.MAX_VALUE;
+        SingleResult optimalResult = null;
+        // analyze: find the optimal one
+        for (SingleResult singleResult : allResult.getList()) {
+            if (singleResult.mRunTime == -1) {
+                continue;
+            }
+
+            if (reduceSpeed != singleResult.mReduceSpeed) {
+                if (optimalResult != null) {
+                    optimalResult.mIsOpt = true;
+                }
+                optimalTime = singleResult.mRunTime;
+            } else {
+                if (singleResult.mRunTime < optimalTime) {
+                    optimalResult = singleResult;
+                    optimalTime = singleResult.mRunTime;
+                }
+            }
+        }
+
+        reduceSpeed = -1;
         double originalRuntime = -1;
         for (SingleResult singleResult : allResult.getList()) {
             if (singleResult.mRunTime == -1) {
@@ -133,7 +156,8 @@ public class ResultParser {
             }
             writer.print("Run time: " + Double.toString(singleResult.mRunTime) + " secs,  " +
                          "Cache miss: " + Integer.toString(singleResult.mCacheMissTimes) + " times" +
-                         (originalRuntime == -1 ? "" : ",   SpeedUp: " + Double.toString(originalRuntime/singleResult.mRunTime)) + "\n");
+                         (originalRuntime == -1 ? "" : ",   SpeedUp: " + Double.toString(originalRuntime/singleResult.mRunTime)) +
+                         (singleResult.mIsOpt ? "  <-t" : "") + "\n");
             writer.print("\n");
         }
         writer.close();

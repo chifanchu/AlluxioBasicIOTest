@@ -17,26 +17,30 @@ public class RandomWorkloadGenerator {
     public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
         //System.out.println("Working Directory = " + System.getProperty("user.dir"));
         PrintWriter writer = new PrintWriter(System.getProperty("user.dir") + "/prepare.txt", "big5");
-
-
-        final int reduceSpeedMultiplier = 1;
-        final int totalFileNumber = 40;
-        final int fileSizeMin = 150; //MB
-        final int fileSizeMax = 250; //MB
-
+        
         final int totalReadOperation = 1000;
 
-        final int manyReadOperation = 40;
-        final int fewReadOperation = 14;
-        final int rareReadOperation = 6;
-
+        // scenario 1: total file size exceed available memory space
 
         // 2G inactive        --> first 10 files
         // 2G not that active --> first 10 files
         // 4G active          --> last  20 files
+        /*
+        final int totalFileNumber = 40;
+        final int fileSizeMin = 150; //MB
+        final int fileSizeMax = 250; //MB
+        final int manyReadOperation = 40;
+        final int fewReadOperation = 14;
+        final int rareReadOperation = 6;
+        */
 
-        // output reduced speed multiplier
-        //writer.println(reduceSpeedMultiplier);
+        // scenario 2: total file size smaller than available memory space
+        final int totalFileNumber = 30;
+        final int fileSizeMin = 150; //MB
+        final int fileSizeMax = 220; //MB
+        final int manyReadOperation = 1;
+        final int fewReadOperation = 1;
+        final int rareReadOperation = 1;
 
         List<Integer> tmps = new ArrayList<Integer>();
         // create persist file
