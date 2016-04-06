@@ -121,6 +121,7 @@ public class ResultParser {
                 if (optimalResult != null) {
                     optimalResult.mIsOpt = true;
                 }
+                optimalResult = singleResult;
                 optimalTime = singleResult.mRunTime;
             } else {
                 if (singleResult.mRunTime < optimalTime) {
@@ -129,7 +130,11 @@ public class ResultParser {
                 }
             }
         }
+        if (optimalResult != null) {
+            optimalResult.mIsOpt = true;
+        }
 
+        // output the result
         reduceSpeed = -1;
         double originalRuntime = -1;
         for (SingleResult singleResult : allResult.getList()) {

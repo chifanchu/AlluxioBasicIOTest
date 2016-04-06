@@ -1,0 +1,6 @@
+#surefire
+#Wed Apr 06 14:27:28 EDT 2016
+user.dir=/Users/nelsonchu/test/java/Tachyon/AlluxioBasicIOTest
+idea.version=14.1.4
+localRepository=/Users/nelsonchu/.m2/repository
+basedir=/Users/nelsonchu/test/java/Tachyon/AlluxioBasicIOTest
