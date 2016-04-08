@@ -297,7 +297,7 @@ public class AlluxioBasicIO {
                     String path = System.getProperty("user.dir") + overheadFileName;
                     Path ppath = FileSystems.getDefault().getPath(path);
                     for(int i=0; i<mReducedSpeedMultiplier; i++) {
-                        Utils.log("Reducing speed!!! " + i+1);
+                        Utils.log("Reducing speed!!! " + Integer.toString(i + 1));
                         writeLargeFileLocal(path, sLongMsg, fileSize);
                         Utils.log("     delete file...");
                         Files.delete(ppath);
