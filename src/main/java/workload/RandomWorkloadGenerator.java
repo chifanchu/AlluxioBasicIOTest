@@ -42,12 +42,15 @@ public class RandomWorkloadGenerator {
         final int fewReadOperation = 1;
         final int rareReadOperation = 1;
 
+        int totalFileSize = 0;
         List<Integer> tmps = new ArrayList<Integer>();
         // create persist file
         for (int i=0; i<totalFileNumber/4; i++ ) {
             int size = ThreadLocalRandom.current().nextInt(fileSizeMin, fileSizeMax + 1);
             writer.println("create /tmp" + i + ".txt " + size);
             writer.println("create /file" + i + ".txt " + size);
+
+            totalFileSize += size;
 
             for (int j=0; j<rareReadOperation; j++) {
                 tmps.add(i);
@@ -60,6 +63,8 @@ public class RandomWorkloadGenerator {
             writer.println("create /tmp" + i + ".txt " + size);
             writer.println("create /file" + i + ".txt " + size);
 
+            totalFileSize += size;
+
             for (int j=0; j<fewReadOperation; j++) {
                 tmps.add(i);
             }
@@ -71,12 +76,15 @@ public class RandomWorkloadGenerator {
             writer.println("create /tmp" + i + ".txt " + size);
             writer.println("create /file" + i + ".txt " + size);
 
+            totalFileSize += size;
+
             for (int j=0; j<manyReadOperation; j++) {
                 tmps.add(i);
             }
         }
-
+        writer.println("Total file size: " + totalFileSize);
         writer.close();
+
         writer = new PrintWriter(System.getProperty("user.dir") + "/task.txt", "big5");
 
         long seed = System.nanoTime();
