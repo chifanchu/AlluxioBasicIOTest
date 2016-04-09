@@ -342,7 +342,8 @@ public class AlluxioBasicIO {
         }
         sLongMsg = builder.toString();
 
-        String workerHostName = "cp-1-mgmt-lan";
+        String workerHostName = NON_SPECIFIED_WORKER;
+        //String workerHostName = "cp-1-mgmt-lan";
         //String workerHostName = MASTER;
 
         if (args.length>0) {
