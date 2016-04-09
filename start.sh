@@ -1,6 +1,8 @@
 #!/bin/bash
-rm /tmp/tmp*
-rm /tmp/file*
+rm tmp*
+rm file*
+rm ../alluxioMount/tmp*
+rm ../alluxioMount/file*
 ./copyDir.sh
 cd ../alluxio
 ./bin/alluxio format
