@@ -1,6 +1,7 @@
 package alluxioOperation;
 
 import alluxio.client.file.URIStatus;
+import alluxio.client.file.policy.MostAvailableFirstPolicy;
 import alluxio.client.file.policy.RoundRobinPolicy;
 import common.Utils;
 import common.Utils.TimeMeasure;
@@ -39,7 +40,7 @@ public class AlluxioBasicIO {
     static public final String MASTER  = "AlluxioMaster";
     static public final String WORKER1 = "AlluxioWorker1";
     static public final String NON_SPECIFIED_WORKER = "LocalFirst";
-    static public final String ROUND_ROBIN = "RoundRobin";
+    static public final String MOST_AVAILABLE_FIRST = "MostAvailableFirst";
     private static String sLongMsg;
 
     private final FileSystem mFileSystem;
@@ -90,8 +91,8 @@ public class AlluxioBasicIO {
     private FileOutStream getFileOutStream(AlluxioURI uri, WriteType type, String targetWorker)
             throws AlluxioException, IOException {
         CreateFileOptions writeOptions = CreateFileOptions.defaults().setWriteType(type);
-        if (targetWorker.equals(ROUND_ROBIN)) {
-            writeOptions.setLocationPolicy(new RoundRobinPolicy());
+        if (targetWorker.equals(MOST_AVAILABLE_FIRST)) {
+            writeOptions.setLocationPolicy(new MostAvailableFirstPolicy());
         } else if (!targetWorker.equals(NON_SPECIFIED_WORKER)) {
             writeOptions.setLocationPolicy(new SpecificHostPolicy(targetWorker));
         }
@@ -183,7 +184,7 @@ public class AlluxioBasicIO {
 
         OpenFileOptions readOptions = OpenFileOptions.defaults().setReadType(type);
         if (!cacheLocation.equals(NON_SPECIFIED_WORKER)
-                &&!cacheLocation.equals(ROUND_ROBIN) ) {
+                &&!cacheLocation.equals(MOST_AVAILABLE_FIRST) ) {
             readOptions.setLocationPolicy(new SpecificHostPolicy(cacheLocation));
         }
         FileInStream is = mFileSystem.openFile(uri, readOptions);
@@ -364,8 +365,7 @@ public class AlluxioBasicIO {
             workerHostName = args[1];
         }
         Utils.log("Reduced disk speed by: " + alluIO.mReducedSpeedMultiplier + "X");
-        Utils.log("Running client in: " +
-                ((workerHostName.equals(ROUND_ROBIN)) ? ROUND_ROBIN : NON_SPECIFIED_WORKER) + " mode");
+        Utils.log("Running client in: " + workerHostName + " mode");
         alluIO.preTask(workerHostName);
         alluIO.doTask(workerHostName);
     }
