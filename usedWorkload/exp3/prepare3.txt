@@ -1,21 +1,21 @@
-create /tmp200.txt 117
-create /file200.txt 117
-create /tmp201.txt 114
-create /file201.txt 114
-create /tmp202.txt 83
-create /file202.txt 83
-create /tmp203.txt 90
-create /file203.txt 90
-create /tmp204.txt 84
-create /file204.txt 84
-create /tmp205.txt 120
-create /file205.txt 120
-create /tmp206.txt 81
-create /file206.txt 81
-create /tmp207.txt 114
-create /file207.txt 114
-create /tmp208.txt 112
-create /file208.txt 112
-create /tmp209.txt 110
-create /file209.txt 110
-Total file size: 1025
+create /tmp200.txt 97 cache
+create /file200.txt 97
+create /tmp201.txt 102 cache
+create /file201.txt 102
+create /tmp202.txt 88 cache
+create /file202.txt 88
+create /tmp203.txt 110 cache
+create /file203.txt 110
+create /tmp204.txt 115 cache
+create /file204.txt 115
+create /tmp205.txt 113 cache
+create /file205.txt 113
+create /tmp206.txt 96 cache
+create /file206.txt 96
+create /tmp207.txt 96 cache
+create /file207.txt 96
+create /tmp208.txt 89 cache
+create /file208.txt 89
+create /tmp209.txt 102 cache
+create /file209.txt 102
+Total file size: 1008

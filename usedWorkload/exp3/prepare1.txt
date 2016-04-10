@@ -1,61 +1,61 @@
-create /tmp0.txt 159
-create /file0.txt 159
-create /tmp1.txt 102
-create /file1.txt 102
-create /tmp2.txt 144
-create /file2.txt 144
-create /tmp3.txt 128
-create /file3.txt 128
-create /tmp4.txt 137
-create /file4.txt 137
-create /tmp5.txt 122
-create /file5.txt 122
-create /tmp6.txt 106
-create /file6.txt 106
-create /tmp7.txt 136
-create /file7.txt 136
-create /tmp8.txt 149
-create /file8.txt 149
-create /tmp9.txt 111
-create /file9.txt 111
-create /tmp10.txt 149
-create /file10.txt 149
-create /tmp11.txt 131
-create /file11.txt 131
-create /tmp12.txt 122
-create /file12.txt 122
-create /tmp13.txt 124
-create /file13.txt 124
-create /tmp14.txt 157
-create /file14.txt 157
-create /tmp15.txt 131
-create /file15.txt 131
-create /tmp16.txt 158
-create /file16.txt 158
-create /tmp17.txt 105
-create /file17.txt 105
-create /tmp18.txt 159
-create /file18.txt 159
-create /tmp19.txt 137
-create /file19.txt 137
-create /tmp20.txt 115
-create /file20.txt 115
-create /tmp21.txt 130
-create /file21.txt 130
-create /tmp22.txt 116
-create /file22.txt 116
-create /tmp23.txt 134
-create /file23.txt 134
-create /tmp24.txt 155
-create /file24.txt 155
-create /tmp25.txt 138
-create /file25.txt 138
-create /tmp26.txt 113
-create /file26.txt 113
-create /tmp27.txt 119
-create /file27.txt 119
-create /tmp28.txt 112
-create /file28.txt 112
-create /tmp29.txt 149
-create /file29.txt 149
-Total file size: 3948
+create /tmp0.txt 125 cache
+create /file0.txt 125
+create /tmp1.txt 148 cache
+create /file1.txt 148
+create /tmp2.txt 117 cache
+create /file2.txt 117
+create /tmp3.txt 127 cache
+create /file3.txt 127
+create /tmp4.txt 120 cache
+create /file4.txt 120
+create /tmp5.txt 128 cache
+create /file5.txt 128
+create /tmp6.txt 156 cache
+create /file6.txt 156
+create /tmp7.txt 124 cache
+create /file7.txt 124
+create /tmp8.txt 144 cache
+create /file8.txt 144
+create /tmp9.txt 145 cache
+create /file9.txt 145
+create /tmp10.txt 140 cache
+create /file10.txt 140
+create /tmp11.txt 148 cache
+create /file11.txt 148
+create /tmp12.txt 150 cache
+create /file12.txt 150
+create /tmp13.txt 147 cache
+create /file13.txt 147
+create /tmp14.txt 111 cache
+create /file14.txt 111
+create /tmp15.txt 102 cache
+create /file15.txt 102
+create /tmp16.txt 109 cache
+create /file16.txt 109
+create /tmp17.txt 153 cache
+create /file17.txt 153
+create /tmp18.txt 133 cache
+create /file18.txt 133
+create /tmp19.txt 109 cache
+create /file19.txt 109
+create /tmp20.txt 150 cache
+create /file20.txt 150
+create /tmp21.txt 149 cache
+create /file21.txt 149
+create /tmp22.txt 133 cache
+create /file22.txt 133
+create /tmp23.txt 102 cache
+create /file23.txt 102
+create /tmp24.txt 144 cache
+create /file24.txt 144
+create /tmp25.txt 118 cache
+create /file25.txt 118
+create /tmp26.txt 126 cache
+create /file26.txt 126
+create /tmp27.txt 147 cache
+create /file27.txt 147
+create /tmp28.txt 147 cache
+create /file28.txt 147
+create /tmp29.txt 116 cache
+create /file29.txt 116
+Total file size: 3968

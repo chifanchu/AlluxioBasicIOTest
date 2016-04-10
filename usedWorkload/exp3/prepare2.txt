@@ -1,41 +1,41 @@
-create /tmp100.txt 57
-create /file100.txt 57
-create /tmp101.txt 58
-create /file101.txt 58
-create /tmp102.txt 55
-create /file102.txt 55
-create /tmp103.txt 54
-create /file103.txt 54
-create /tmp104.txt 48
-create /file104.txt 48
-create /tmp105.txt 53
-create /file105.txt 53
-create /tmp106.txt 45
-create /file106.txt 45
-create /tmp107.txt 44
-create /file107.txt 44
-create /tmp108.txt 51
-create /file108.txt 51
-create /tmp109.txt 40
-create /file109.txt 40
-create /tmp110.txt 54
-create /file110.txt 54
-create /tmp111.txt 48
-create /file111.txt 48
-create /tmp112.txt 45
-create /file112.txt 45
-create /tmp113.txt 49
-create /file113.txt 49
-create /tmp114.txt 46
-create /file114.txt 46
-create /tmp115.txt 43
-create /file115.txt 43
-create /tmp116.txt 50
-create /file116.txt 50
-create /tmp117.txt 58
-create /file117.txt 58
-create /tmp118.txt 52
-create /file118.txt 52
-create /tmp119.txt 50
+create /tmp100.txt 59 cache
+create /file100.txt 59
+create /tmp101.txt 55 cache
+create /file101.txt 55
+create /tmp102.txt 57 cache
+create /file102.txt 57
+create /tmp103.txt 41 cache
+create /file103.txt 41
+create /tmp104.txt 53 cache
+create /file104.txt 53
+create /tmp105.txt 49 cache
+create /file105.txt 49
+create /tmp106.txt 55 cache
+create /file106.txt 55
+create /tmp107.txt 49 cache
+create /file107.txt 49
+create /tmp108.txt 55 cache
+create /file108.txt 55
+create /tmp109.txt 53 cache
+create /file109.txt 53
+create /tmp110.txt 49 cache
+create /file110.txt 49
+create /tmp111.txt 54 cache
+create /file111.txt 54
+create /tmp112.txt 44 cache
+create /file112.txt 44
+create /tmp113.txt 50 cache
+create /file113.txt 50
+create /tmp114.txt 42 cache
+create /file114.txt 42
+create /tmp115.txt 53 cache
+create /file115.txt 53
+create /tmp116.txt 51 cache
+create /file116.txt 51
+create /tmp117.txt 41 cache
+create /file117.txt 41
+create /tmp118.txt 47 cache
+create /file118.txt 47
+create /tmp119.txt 50 cache
 create /file119.txt 50
-Total file size: 1000
+Total file size: 1007

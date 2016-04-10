@@ -18,6 +18,8 @@ public class RandomWorkloadGenerator {
         //System.out.println("Working Directory = " + System.getProperty("user.dir"));
         PrintWriter writer = new PrintWriter(System.getProperty("user.dir") + "/prepare.txt", "big5");
 
+        String writeOption = "";
+
         // scenario 1: total file size smaller than available memory space
         /*
         final int fileNameBase = 0;
@@ -47,23 +49,24 @@ public class RandomWorkloadGenerator {
 
         // scenario 3: three clients, every thing can fit into memory
         // client1: 4G 30 files(100~160MB) 1000 operations
-        // client2: 1G 20 files(40~55MB) 4000 operations
+        // client2: 1G 20 files(40~55MB) 6000 operations
         // client3: 1G 10 files(80~120MB) 2500 operations
-        final int fileNameBase = 100;
-        final int totalFileNumber = 20;
-        final int fileSizeMin = 40; //MB
-        final int fileSizeMax = 60; //MB
-        final int totalReadOperation = 4000;
+        final int fileNameBase = 0;
+        final int totalFileNumber = 30;
+        final int fileSizeMin = 100; //MB
+        final int fileSizeMax = 160; //MB
+        final int totalReadOperation = 1000;
         final int manyReadOperation = 1;
         final int fewReadOperation = 1;
         final int rareReadOperation = 1;
+        writeOption = " cache";
 
         int totalFileSize = 0;
         List<Integer> tmps = new ArrayList<Integer>();
         // create persist file
         for (int i=fileNameBase; i<totalFileNumber/4 + fileNameBase; i++ ) {
             int size = ThreadLocalRandom.current().nextInt(fileSizeMin, fileSizeMax + 1);
-            writer.println("create /tmp" + i + ".txt " + size);
+            writer.println("create /tmp" + i + ".txt " + size + writeOption);
             writer.println("create /file" + i + ".txt " + size);
 
             totalFileSize += size;
@@ -76,7 +79,7 @@ public class RandomWorkloadGenerator {
         // create persist file
         for (int i=totalFileNumber/4 + fileNameBase; i<totalFileNumber/2 + fileNameBase; i++ ) {
             int size = ThreadLocalRandom.current().nextInt(fileSizeMin, fileSizeMax + 1);
-            writer.println("create /tmp" + i + ".txt " + size);
+            writer.println("create /tmp" + i + ".txt " + size + writeOption);
             writer.println("create /file" + i + ".txt " + size);
 
             totalFileSize += size;
@@ -89,7 +92,7 @@ public class RandomWorkloadGenerator {
         // create persist file
         for (int i=totalFileNumber/2 + fileNameBase; i<totalFileNumber + fileNameBase; i++ ) {
             int size = ThreadLocalRandom.current().nextInt(fileSizeMin, fileSizeMax + 1);
-            writer.println("create /tmp" + i + ".txt " + size);
+            writer.println("create /tmp" + i + ".txt " + size + writeOption);
             writer.println("create /file" + i + ".txt " + size);
 
             totalFileSize += size;
