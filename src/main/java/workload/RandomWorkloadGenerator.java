@@ -18,8 +18,6 @@ public class RandomWorkloadGenerator {
         //System.out.println("Working Directory = " + System.getProperty("user.dir"));
         PrintWriter writer = new PrintWriter(System.getProperty("user.dir") + "/prepare.txt", "big5");
 
-        String writeOption = "";
-
         // scenario 1: total file size smaller than available memory space
         /*
         final int fileNameBase = 0;
@@ -59,14 +57,13 @@ public class RandomWorkloadGenerator {
         final int manyReadOperation = 1;
         final int fewReadOperation = 1;
         final int rareReadOperation = 1;
-        //writeOption = " cache";
 
         int totalFileSize = 0;
         List<Integer> tmps = new ArrayList<Integer>();
         // create persist file
         for (int i=fileNameBase; i<totalFileNumber/4 + fileNameBase; i++ ) {
             int size = ThreadLocalRandom.current().nextInt(fileSizeMin, fileSizeMax + 1);
-            writer.println("create /tmp" + i + ".txt " + size + writeOption);
+            writer.println("create /tmp" + i + ".txt " + size);
             writer.println("create /file" + i + ".txt " + size);
 
             totalFileSize += size;
@@ -79,7 +76,7 @@ public class RandomWorkloadGenerator {
         // create persist file
         for (int i=totalFileNumber/4 + fileNameBase; i<totalFileNumber/2 + fileNameBase; i++ ) {
             int size = ThreadLocalRandom.current().nextInt(fileSizeMin, fileSizeMax + 1);
-            writer.println("create /tmp" + i + ".txt " + size + writeOption);
+            writer.println("create /tmp" + i + ".txt " + size);
             writer.println("create /file" + i + ".txt " + size);
 
             totalFileSize += size;
@@ -92,7 +89,7 @@ public class RandomWorkloadGenerator {
         // create persist file
         for (int i=totalFileNumber/2 + fileNameBase; i<totalFileNumber + fileNameBase; i++ ) {
             int size = ThreadLocalRandom.current().nextInt(fileSizeMin, fileSizeMax + 1);
-            writer.println("create /tmp" + i + ".txt " + size + writeOption);
+            writer.println("create /tmp" + i + ".txt " + size);
             writer.println("create /file" + i + ".txt " + size);
 
             totalFileSize += size;

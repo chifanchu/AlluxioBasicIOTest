@@ -255,11 +255,7 @@ public class AlluxioBasicIO {
             if (components[0].equals("create")) {
                 int fileSize = Integer.parseInt(components[2]);
                 if (fileName.startsWith("/tmp")) {
-                    if (components[3].equals("cache")) {
-                        writeLargeFile(new AlluxioURI(fileName), sLongMsg, fileSize, WriteType.CACHE_THROUGH, workerHostName);
-                    } else {
-                        writeLargeFile(new AlluxioURI(fileName), sLongMsg, fileSize, WriteType.THROUGH, workerHostName);
-                    }
+                    writeLargeFile(new AlluxioURI(fileName), sLongMsg, fileSize, WriteType.THROUGH, workerHostName);
                 } else  {
                     dummy = fileName;
                     mFileSizeMap.put(fileName, fileSize);
