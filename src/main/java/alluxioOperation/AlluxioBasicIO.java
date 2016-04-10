@@ -2,7 +2,6 @@ package alluxioOperation;
 
 import alluxio.client.file.URIStatus;
 import alluxio.client.file.policy.MostAvailableFirstPolicy;
-import alluxio.client.file.policy.RoundRobinPolicy;
 import common.Utils;
 import common.Utils.TimeMeasure;
 
