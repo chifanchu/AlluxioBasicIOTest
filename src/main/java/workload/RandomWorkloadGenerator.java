@@ -17,27 +17,43 @@ public class RandomWorkloadGenerator {
     public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
         //System.out.println("Working Directory = " + System.getProperty("user.dir"));
         PrintWriter writer = new PrintWriter(System.getProperty("user.dir") + "/prepare.txt", "big5");
-        
+
+        // scenario 1: total file size smaller than available memory space
+        /*
+        final int fileNameBase = 0;
+        final int totalFileNumber = 30;
+        final int fileSizeMin = 150; //MB
+        final int fileSizeMax = 220; //MB
         final int totalReadOperation = 1000;
+        final int manyReadOperation = 1;
+        final int fewReadOperation = 1;
+        final int rareReadOperation = 1;
+        */
 
-        // scenario 1: total file size exceed available memory space
-
+        // scenario 2: total file size exceed available memory space
         // 2G inactive        --> first 10 files
         // 2G not that active --> first 10 files
         // 4G active          --> last  20 files
         /*
+        final int fileNameBase = 0;
         final int totalFileNumber = 40;
         final int fileSizeMin = 150; //MB
         final int fileSizeMax = 250; //MB
+        final int totalReadOperation = 1000;
         final int manyReadOperation = 40;
         final int fewReadOperation = 14;
         final int rareReadOperation = 6;
         */
 
-        // scenario 2: total file size smaller than available memory space
-        final int totalFileNumber = 30;
-        final int fileSizeMin = 150; //MB
-        final int fileSizeMax = 220; //MB
+        // scenario 3: three clients, every thing can fit into memory
+        // client1: 4G 30 files(100~160MB) 1000 operations
+        // client2: 1G 20 files(40~55MB) 1500 operations
+        // client3: 1G 10 files(80~110MB) 1200 operations
+        final int fileNameBase = 200;
+        final int totalFileNumber = 10;
+        final int fileSizeMin = 80; //MB
+        final int fileSizeMax = 110; //MB
+        final int totalReadOperation = 1200;
         final int manyReadOperation = 1;
         final int fewReadOperation = 1;
         final int rareReadOperation = 1;
@@ -45,7 +61,7 @@ public class RandomWorkloadGenerator {
         int totalFileSize = 0;
         List<Integer> tmps = new ArrayList<Integer>();
         // create persist file
-        for (int i=0; i<totalFileNumber/4; i++ ) {
+        for (int i=fileNameBase; i<totalFileNumber/4 + fileNameBase; i++ ) {
             int size = ThreadLocalRandom.current().nextInt(fileSizeMin, fileSizeMax + 1);
             writer.println("create /tmp" + i + ".txt " + size);
             writer.println("create /file" + i + ".txt " + size);
@@ -58,7 +74,7 @@ public class RandomWorkloadGenerator {
         }
 
         // create persist file
-        for (int i=totalFileNumber/4; i<totalFileNumber/2; i++ ) {
+        for (int i=totalFileNumber/4 + fileNameBase; i<totalFileNumber/2 + fileNameBase; i++ ) {
             int size = ThreadLocalRandom.current().nextInt(fileSizeMin, fileSizeMax + 1);
             writer.println("create /tmp" + i + ".txt " + size);
             writer.println("create /file" + i + ".txt " + size);
@@ -71,7 +87,7 @@ public class RandomWorkloadGenerator {
         }
 
         // create persist file
-        for (int i=totalFileNumber/2; i<totalFileNumber; i++ ) {
+        for (int i=totalFileNumber/2 + fileNameBase; i<totalFileNumber + fileNameBase; i++ ) {
             int size = ThreadLocalRandom.current().nextInt(fileSizeMin, fileSizeMax + 1);
             writer.println("create /tmp" + i + ".txt " + size);
             writer.println("create /file" + i + ".txt " + size);

@@ -1,0 +1,21 @@
+create /tmp200.txt 104
+create /file200.txt 104
+create /tmp201.txt 92
+create /file201.txt 92
+create /tmp202.txt 97
+create /file202.txt 97
+create /tmp203.txt 82
+create /file203.txt 82
+create /tmp204.txt 110
+create /file204.txt 110
+create /tmp205.txt 92
+create /file205.txt 92
+create /tmp206.txt 103
+create /file206.txt 103
+create /tmp207.txt 90
+create /file207.txt 90
+create /tmp208.txt 88
+create /file208.txt 88
+create /tmp209.txt 106
+create /file209.txt 106
+Total file size: 964
