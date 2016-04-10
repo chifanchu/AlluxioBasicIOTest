@@ -18,6 +18,7 @@ public class ResultParser {
 
     public static class SingleResult {
         public int mReduceSpeed;
+        public String mClientMode = "LocalFirst";
         public boolean mBackground;
         public boolean mGlobalLRU;
         public long mTimeThreshold;
@@ -90,6 +91,11 @@ public class ResultParser {
             int reducingTotal = 0;
             while((line = reader.readLine()) != null) {
                 line = line.trim();
+                if (line.startsWith("--- Running client in:")) {
+                    String mode = line.split(" ")[4];
+                    singleResult.mClientMode = mode;
+                }
+
                 if (line.startsWith("--- Reducing speed")) {
                     reducingTotal++;
                 }
@@ -158,7 +164,8 @@ public class ResultParser {
             } else {
                 writer.print("Background = " + Boolean.toString(singleResult.mBackground) + ", " +
                         "Global LRU = " + Boolean.toString(singleResult.mGlobalLRU) + ", " +
-                        "Time threshold = " + Long.toString(singleResult.mTimeThreshold) + "\n");
+                        "Time threshold = " + Long.toString(singleResult.mTimeThreshold) + ",  " +
+                        "Client in " + singleResult.mClientMode + " mode" + "\n");
             }
             writer.print("Run time: " + Double.toString(singleResult.mRunTime) + " secs,  " +
                          "Cache miss: " + Integer.toString(singleResult.mCacheMissTimes) + " times" +

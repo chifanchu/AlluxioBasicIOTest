@@ -1,6 +1,7 @@
 package alluxioOperation;
 
 import alluxio.client.file.URIStatus;
+import alluxio.client.file.policy.RoundRobinPolicy;
 import common.Utils;
 import common.Utils.TimeMeasure;
 
@@ -37,7 +38,8 @@ public class AlluxioBasicIO {
     static public final String WORD    = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     static public final String MASTER  = "AlluxioMaster";
     static public final String WORKER1 = "AlluxioWorker1";
-    static public final String NON_SPECIFIED_WORKER = "AnyWorker";
+    static public final String NON_SPECIFIED_WORKER = "LocalFirst";
+    static public final String ROUND_ROBIN = "RoundRobin";
     private static String sLongMsg;
 
     private final FileSystem mFileSystem;
@@ -88,7 +90,9 @@ public class AlluxioBasicIO {
     private FileOutStream getFileOutStream(AlluxioURI uri, WriteType type, String targetWorker)
             throws AlluxioException, IOException {
         CreateFileOptions writeOptions = CreateFileOptions.defaults().setWriteType(type);
-        if(!targetWorker.equals(NON_SPECIFIED_WORKER)) {
+        if (targetWorker.equals(ROUND_ROBIN)) {
+            writeOptions.setLocationPolicy(new RoundRobinPolicy());
+        } else if (!targetWorker.equals(NON_SPECIFIED_WORKER)) {
             writeOptions.setLocationPolicy(new SpecificHostPolicy(targetWorker));
         }
         return mFileSystem.createFile(uri, writeOptions);
@@ -346,7 +350,8 @@ public class AlluxioBasicIO {
         }
         sLongMsg = builder.toString();
 
-        String workerHostName = NON_SPECIFIED_WORKER;
+        //String workerHostName = NON_SPECIFIED_WORKER;
+        String workerHostName = ROUND_ROBIN;
         //String workerHostName = "cp-1-mgmt-lan";
         //String workerHostName = MASTER;
 
@@ -354,6 +359,8 @@ public class AlluxioBasicIO {
             alluIO.mReducedSpeedMultiplier = Integer.parseInt(args[0]);
         }
         Utils.log("Reduced disk speed by: " + alluIO.mReducedSpeedMultiplier + "X");
+        Utils.log("Running client in: " +
+                ((workerHostName.equals(ROUND_ROBIN)) ? ROUND_ROBIN : NON_SPECIFIED_WORKER) + " mode");
         alluIO.preTask(workerHostName);
         alluIO.doTask(workerHostName);
     }
