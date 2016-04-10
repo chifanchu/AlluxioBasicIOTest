@@ -182,7 +182,8 @@ public class AlluxioBasicIO {
         tm.start();
 
         OpenFileOptions readOptions = OpenFileOptions.defaults().setReadType(type);
-        if (!cacheLocation.equals(NON_SPECIFIED_WORKER)) {
+        if (!cacheLocation.equals(NON_SPECIFIED_WORKER)
+                &&!cacheLocation.equals(ROUND_ROBIN) ) {
             readOptions.setLocationPolicy(new SpecificHostPolicy(cacheLocation));
         }
         FileInStream is = mFileSystem.openFile(uri, readOptions);
@@ -359,7 +360,7 @@ public class AlluxioBasicIO {
             alluIO.mReducedSpeedMultiplier = Integer.parseInt(args[0]);
         }
 
-d        if (args.length>1) {
+        if (args.length>1) {
             workerHostName = args[1];
         }
         Utils.log("Reduced disk speed by: " + alluIO.mReducedSpeedMultiplier + "X");
