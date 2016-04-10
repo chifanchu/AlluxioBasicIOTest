@@ -358,6 +358,10 @@ public class AlluxioBasicIO {
         if (args.length>0) {
             alluIO.mReducedSpeedMultiplier = Integer.parseInt(args[0]);
         }
+
+        if (args.length>1) {
+            workerHostName = args[1];
+        }
         Utils.log("Reduced disk speed by: " + alluIO.mReducedSpeedMultiplier + "X");
         Utils.log("Running client in: " +
                 ((workerHostName.equals(ROUND_ROBIN)) ? ROUND_ROBIN : NON_SPECIFIED_WORKER) + " mode");
