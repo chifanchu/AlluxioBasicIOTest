@@ -75,7 +75,8 @@ public class ResultParser {
         File logDir = new File(LOG_DIR);
         for (final File fileEntry : logDir.listFiles()) {
             String[] comp = fileEntry.getName().split("_");
-            if (comp.length != 12) {
+            if (comp.length < 12) {
+                System.out.println("Incorrect log file format: " + fileEntry.getName());
                 continue;
             }
 
@@ -85,16 +86,16 @@ public class ResultParser {
             singleResult.mTimeThreshold = Long.parseLong(comp[7]);
             singleResult.mReduceSpeed = Integer.parseInt(comp[11].split("\\.")[0]);
 
+            if (comp.length == 15) {
+                singleResult.mClientMode = comp[14].split("\\.")[0];
+            }
+
             BufferedReader reader =
                     new BufferedReader(new FileReader(fileEntry.getPath()));
             String line;
             int reducingTotal = 0;
             while((line = reader.readLine()) != null) {
                 line = line.trim();
-                if (line.startsWith("--- Running client in:")) {
-                    String mode = line.split(" ")[4];
-                    singleResult.mClientMode = mode;
-                }
 
                 if (line.startsWith("--- Reducing speed")) {
                     reducingTotal++;
