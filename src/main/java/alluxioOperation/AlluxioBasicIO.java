@@ -260,11 +260,11 @@ public class AlluxioBasicIO {
             if (components[0].equals("create")) {
                 int fileSize = Integer.parseInt(components[2]);
                 if (fileName.startsWith("/tmp")) {
-                    if (components.length >= 4 && components[3].equals("cache")) {
-                        writeLargeFile(new AlluxioURI(fileName), sLongMsg, fileSize, WriteType.CACHE_THROUGH, workerHostName);
-                    } else {
+                    //if (components.length >= 4 && components[3].equals("cache")) {
+                    //    writeLargeFile(new AlluxioURI(fileName), sLongMsg, fileSize, WriteType.CACHE_THROUGH, workerHostName);
+                    //} else {
                         writeLargeFile(new AlluxioURI(fileName), sLongMsg, fileSize, WriteType.THROUGH, workerHostName);
-                    }
+                    //}
                 } else  {
                     dummy = fileName;
                     mFileSizeMap.put(fileName, fileSize);
@@ -312,7 +312,8 @@ public class AlluxioBasicIO {
                         Files.delete(ppath);
                     }
                 }
-                readFile(new AlluxioURI(fileName), ReadType.CACHE, false, workerHostName);
+                //readFile(new AlluxioURI(fileName), ReadType.CACHE, false, workerHostName);
+                readFile(new AlluxioURI(fileName), ReadType.NO_CACHE, false, workerHostName);
             }
         }
 
@@ -351,9 +352,9 @@ public class AlluxioBasicIO {
         }
         sLongMsg = builder.toString();
 
-        //String workerHostName = NON_SPECIFIED_WORKER;
+        String workerHostName = NON_SPECIFIED_WORKER;
         //String workerHostName = ROUND_ROBIN;
-        String workerHostName = "cp-3-mgmt-lan";
+        //String workerHostName = "cp-3-mgmt-lan";
         //String workerHostName = MASTER;
 
         if (args.length>0) {
