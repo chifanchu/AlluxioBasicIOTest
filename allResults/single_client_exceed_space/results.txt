@@ -1,0 +1,311 @@
+ ----------------------------- Reduced speed 1 ----------------------------------------------------
+ Original
+ Run time: 2776.315 secs,  Cache miss: 669 times,   SpeedUp: 1.0
+
+ Background = true, Global LRU = false, Time threshold = 100000000
+ Run time: 1607.012 secs,  Cache miss: 188 times,   SpeedUp: 1.7276255560008265
+
+ Background = true, Global LRU = true, Time threshold = 10
+ Run time: 1363.634 secs,  Cache miss: 187 times,   SpeedUp: 2.035967862344295
+
+ Background = true, Global LRU = true, Time threshold = 20
+ Run time: 1356.703 secs,  Cache miss: 188 times,   SpeedUp: 2.046369028446167
+
+ Background = true, Global LRU = true, Time threshold = 30
+ Run time: 1339.128 secs,  Cache miss: 178 times,   SpeedUp: 2.0732260097615764
+
+ Background = true, Global LRU = true, Time threshold = 40
+ Run time: 1332.713 secs,  Cache miss: 159 times,   SpeedUp: 2.083205461340889  <-
+
+ Background = true, Global LRU = true, Time threshold = 50
+ Run time: 1337.606 secs,  Cache miss: 154 times,   SpeedUp: 2.0755850377465412
+
+ Background = true, Global LRU = true, Time threshold = 60
+ Run time: 1414.135 secs,  Cache miss: 160 times,   SpeedUp: 1.9632602262160261
+
+ Background = true, Global LRU = true, Time threshold = 80
+ Run time: 1474.531 secs,  Cache miss: 173 times,   SpeedUp: 1.8828461388739879
+
+ Background = true, Global LRU = true, Time threshold = 100
+ Run time: 1450.083 secs,  Cache miss: 169 times,   SpeedUp: 1.9145904062043344
+
+ Background = true, Global LRU = true, Time threshold = 120
+ Run time: 1504.329 secs,  Cache miss: 168 times,   SpeedUp: 1.8455504081886345
+
+ ----------------------------- Reduced speed 2 ----------------------------------------------------
+ Original
+ Run time: 5097.766 secs,  Cache miss: 666 times,   SpeedUp: 1.0
+
+ Background = true, Global LRU = false, Time threshold = 100000000
+ Run time: 2189.089 secs,  Cache miss: 180 times,   SpeedUp: 2.3287157351756824
+
+ Background = true, Global LRU = true, Time threshold = 10
+ Run time: 1936.988 secs,  Cache miss: 187 times,   SpeedUp: 2.631800506766175
+
+ Background = true, Global LRU = true, Time threshold = 20
+ Run time: 1967.902 secs,  Cache miss: 187 times,   SpeedUp: 2.5904572483792383
+
+ Background = true, Global LRU = true, Time threshold = 30
+ Run time: 1945.966 secs,  Cache miss: 189 times,   SpeedUp: 2.6196583085213203
+
+ Background = true, Global LRU = true, Time threshold = 40
+ Run time: 1902.536 secs,  Cache miss: 173 times,   SpeedUp: 2.6794583650453916
+
+ Background = true, Global LRU = true, Time threshold = 50
+ Run time: 1819.242 secs,  Cache miss: 163 times,   SpeedUp: 2.8021373736973967  <-
+
+ Background = true, Global LRU = true, Time threshold = 60
+ Run time: 1819.391 secs,  Cache miss: 155 times,   SpeedUp: 2.801907891156986
+
+ Background = true, Global LRU = true, Time threshold = 80
+ Run time: 1957.343 secs,  Cache miss: 166 times,   SpeedUp: 2.604431619802967
+
+ Background = true, Global LRU = true, Time threshold = 100
+ Run time: 2011.743 secs,  Cache miss: 174 times,   SpeedUp: 2.53400459203785
+
+ Background = true, Global LRU = true, Time threshold = 120
+ Run time: 2061.926 secs,  Cache miss: 176 times,   SpeedUp: 2.4723321787493826
+
+ ----------------------------- Reduced speed 3 ----------------------------------------------------
+ Original
+ Run time: 7352.918 secs,  Cache miss: 674 times,   SpeedUp: 1.0
+
+ Background = true, Global LRU = false, Time threshold = 100000000
+ Run time: 2980.254 secs,  Cache miss: 189 times,   SpeedUp: 2.4672118550969144
+
+ Background = true, Global LRU = true, Time threshold = 10
+ Run time: 2505.29 secs,  Cache miss: 189 times,   SpeedUp: 2.934956831344874
+
+ Background = true, Global LRU = true, Time threshold = 20
+ Run time: 2577.626 secs,  Cache miss: 190 times,   SpeedUp: 2.8525930449180756
+
+ Background = true, Global LRU = true, Time threshold = 30
+ Run time: 2512.712 secs,  Cache miss: 189 times,   SpeedUp: 2.9262876127467052
+
+ Background = true, Global LRU = true, Time threshold = 40
+ Run time: 2505.495 secs,  Cache miss: 186 times,   SpeedUp: 2.934716692709425
+
+ Background = true, Global LRU = true, Time threshold = 50
+ Run time: 2568.988 secs,  Cache miss: 187 times,   SpeedUp: 2.862184642357224
+
+ Background = true, Global LRU = true, Time threshold = 60
+ Run time: 2373.196 secs,  Cache miss: 162 times,   SpeedUp: 3.0983188914864175
+
+ Background = true, Global LRU = true, Time threshold = 80
+ Run time: 2317.677 secs,  Cache miss: 156 times,   SpeedUp: 3.1725378471633445  <-
+
+ Background = true, Global LRU = true, Time threshold = 100
+ Run time: 2455.304 secs,  Cache miss: 166 times,   SpeedUp: 2.9947077836390115
+
+ Background = true, Global LRU = true, Time threshold = 120
+ Run time: 2507.375 secs,  Cache miss: 172 times,   SpeedUp: 2.9325162769829003
+
+ ----------------------------- Reduced speed 4 ----------------------------------------------------
+ Original
+ Run time: 9760.584 secs,  Cache miss: 673 times,   SpeedUp: 1.0
+
+ Background = true, Global LRU = false, Time threshold = 100000000
+ Run time: 3737.894 secs,  Cache miss: 189 times,   SpeedUp: 2.611252218495228
+
+ Background = true, Global LRU = true, Time threshold = 10
+ Run time: 3160.245 secs,  Cache miss: 187 times,   SpeedUp: 3.0885529444710778
+
+ Background = true, Global LRU = true, Time threshold = 80
+ Run time: 2947.414 secs,  Cache miss: 167 times,   SpeedUp: 3.3115755031359693
+
+ Background = true, Global LRU = true, Time threshold = 100
+ Run time: 2923.708 secs,  Cache miss: 165 times,   SpeedUp: 3.338426409203655
+
+ Background = true, Global LRU = true, Time threshold = 120
+ Run time: 2877.653 secs,  Cache miss: 158 times,   SpeedUp: 3.3918557935929043  <-
+
+ Background = true, Global LRU = true, Time threshold = 140
+ Run time: 3117.671 secs,  Cache miss: 174 times,   SpeedUp: 3.1307293168522277
+
+ Background = true, Global LRU = true, Time threshold = 160
+ Run time: 3144.959 secs,  Cache miss: 172 times,   SpeedUp: 3.1035647841513994
+
+ Background = true, Global LRU = true, Time threshold = 180
+ Run time: 3079.071 secs,  Cache miss: 170 times,   SpeedUp: 3.1699769183627144
+
+ Background = true, Global LRU = true, Time threshold = 200
+ Run time: 3197.084 secs,  Cache miss: 171 times,   SpeedUp: 3.0529645139133037
+
+ Background = true, Global LRU = true, Time threshold = 220
+ Run time: 3132.803 secs,  Cache miss: 175 times,   SpeedUp: 3.1156073331135095
+
+ Background = true, Global LRU = true, Time threshold = 240
+ Run time: 3196.098 secs,  Cache miss: 172 times,   SpeedUp: 3.0539063570641454
+
+ ----------------------------- Reduced speed 5 ----------------------------------------------------
+ Original
+ Run time: 11721.134 secs,  Cache miss: 676 times,   SpeedUp: 1.0
+
+ Background = true, Global LRU = false, Time threshold = 100000000
+ Run time: 4125.416 secs,  Cache miss: 181 times,   SpeedUp: 2.841200499537501
+
+ Background = true, Global LRU = true, Time threshold = 80
+ Run time: 3916.135 secs,  Cache miss: 186 times,   SpeedUp: 2.993036246196824
+
+ Background = true, Global LRU = true, Time threshold = 100
+ Run time: 3600.945 secs,  Cache miss: 169 times,   SpeedUp: 3.2550161138256763
+
+ Background = true, Global LRU = true, Time threshold = 120
+ Run time: 3514.985 secs,  Cache miss: 164 times,   SpeedUp: 3.3346184976607294
+
+ Background = true, Global LRU = true, Time threshold = 140
+ Run time: 3410.631 secs,  Cache miss: 154 times,   SpeedUp: 3.4366467671231513  <-
+
+ Background = true, Global LRU = true, Time threshold = 160
+ Run time: 3672.546 secs,  Cache miss: 168 times,   SpeedUp: 3.1915553950855893
+
+ Background = true, Global LRU = true, Time threshold = 180
+ Run time: 3919.106 secs,  Cache miss: 178 times,   SpeedUp: 2.990767282130159
+
+ Background = true, Global LRU = true, Time threshold = 200
+ Run time: 3815.798 secs,  Cache miss: 175 times,   SpeedUp: 3.0717385983220287
+
+ Background = true, Global LRU = true, Time threshold = 220
+ Run time: 3925.076 secs,  Cache miss: 182 times,   SpeedUp: 2.9862183560267366
+
+ Background = true, Global LRU = true, Time threshold = 240
+ Run time: 3752.598 secs,  Cache miss: 170 times,   SpeedUp: 3.123471792075783
+
+ ----------------------------- Reduced speed 8 ----------------------------------------------------
+ Original
+ Run time: 18696.317 secs,  Cache miss: 675 times,   SpeedUp: 1.0
+
+ Background = true, Global LRU = false, Time threshold = 100000000
+ Run time: 6370.269 secs,  Cache miss: 181 times,   SpeedUp: 2.9349336739154968
+
+ Background = true, Global LRU = true, Time threshold = 160
+ Run time: 5336.2 secs,  Cache miss: 165 times,   SpeedUp: 3.503676211536299
+
+ Background = true, Global LRU = true, Time threshold = 180
+ Run time: 5253.394 secs,  Cache miss: 167 times,   SpeedUp: 3.5589024923696946
+
+ Background = true, Global LRU = true, Time threshold = 200
+ Run time: 5095.779 secs,  Cache miss: 159 times,   SpeedUp: 3.668981131246076  <-
+
+ Background = true, Global LRU = true, Time threshold = 220
+ Run time: 5131.235 secs,  Cache miss: 158 times,   SpeedUp: 3.643629067855984
+
+ Background = true, Global LRU = true, Time threshold = 240
+ Run time: 5315.193 secs,  Cache miss: 163 times,   SpeedUp: 3.5175236346074352
+
+ Background = true, Global LRU = true, Time threshold = 260
+ Run time: 5597.65 secs,  Cache miss: 175 times,   SpeedUp: 3.3400296553017785
+
+ Background = true, Global LRU = true, Time threshold = 280
+ Run time: 5526.486 secs,  Cache miss: 170 times,   SpeedUp: 3.383038878593015
+
+ Background = true, Global LRU = true, Time threshold = 300
+ Run time: 5565.981 secs,  Cache miss: 174 times,   SpeedUp: 3.359033564792981
+
+ Background = true, Global LRU = true, Time threshold = 320
+ Run time: 5571.632 secs,  Cache miss: 173 times,   SpeedUp: 3.355626681733467
+
+ ----------------------------- Reduced speed 10 ----------------------------------------------------
+ Original
+ Run time: 23144.362 secs,  Cache miss: 673 times,   SpeedUp: 1.0
+
+ Background = true, Global LRU = false, Time threshold = 100000000
+ Run time: 7870.955 secs,  Cache miss: 189 times,   SpeedUp: 2.940476981509868
+
+ Background = true, Global LRU = true, Time threshold = 160
+ Run time: 6388.081 secs,  Cache miss: 163 times,   SpeedUp: 3.623053934350551
+
+ Background = true, Global LRU = true, Time threshold = 180
+ Run time: 6452.104 secs,  Cache miss: 164 times,   SpeedUp: 3.5871030597150946
+
+ Background = true, Global LRU = true, Time threshold = 200
+ Run time: 6394.682 secs,  Cache miss: 160 times,   SpeedUp: 3.6193139862154213
+
+ Background = true, Global LRU = true, Time threshold = 220
+ Run time: 6358.336 secs,  Cache miss: 159 times,   SpeedUp: 3.640002981912249
+
+ Background = true, Global LRU = true, Time threshold = 240
+ Run time: 6622.201 secs,  Cache miss: 160 times,   SpeedUp: 3.49496519359651
+
+ Background = true, Global LRU = true, Time threshold = 260
+ Run time: 6615.734 secs,  Cache miss: 162 times,   SpeedUp: 3.498381585474869
+
+ Background = true, Global LRU = true, Time threshold = 280
+ Run time: 6308.834 secs,  Cache miss: 152 times,   SpeedUp: 3.6685641118469756  <-
+
+ Background = true, Global LRU = true, Time threshold = 300
+ Run time: 6974.583 secs,  Cache miss: 166 times,   SpeedUp: 3.318386489916315
+
+ Background = true, Global LRU = true, Time threshold = 320
+ Run time: 7300.574 secs,  Cache miss: 174 times,   SpeedUp: 3.1702112737984716
+
+ ----------------------------- Reduced speed 15 ----------------------------------------------------
+ Original
+ Run time: 35959.737 secs,  Cache miss: 674 times,   SpeedUp: 1.0
+
+ Background = true, Global LRU = false, Time threshold = 100000000
+ Run time: 11074.122 secs,  Cache miss: 181 times,   SpeedUp: 3.247186278063399
+
+ Background = true, Global LRU = true, Time threshold = 200
+ Run time: 11561.648 secs,  Cache miss: 185 times,   SpeedUp: 3.110260492275842
+
+ Background = true, Global LRU = true, Time threshold = 220
+ Run time: 11884.984 secs,  Cache miss: 185 times,   SpeedUp: 3.0256445444099884
+
+ Background = true, Global LRU = true, Time threshold = 240
+ Run time: 10860.555 secs,  Cache miss: 171 times,   SpeedUp: 3.311040457877153
+
+ Background = true, Global LRU = true, Time threshold = 260
+ Run time: 10383.726 secs,  Cache miss: 166 times,   SpeedUp: 3.463086082972528  <-
+
+ Background = true, Global LRU = true, Time threshold = 280
+ Run time: 10621.97 secs,  Cache miss: 166 times,   SpeedUp: 3.3854112749329928
+
+ Background = true, Global LRU = true, Time threshold = 300
+ Run time: 11014.909 secs,  Cache miss: 165 times,   SpeedUp: 3.264642222645689
+
+ Background = true, Global LRU = true, Time threshold = 320
+ Run time: 11334.378 secs,  Cache miss: 164 times,   SpeedUp: 3.1726255291644585
+
+ Background = true, Global LRU = true, Time threshold = 340
+ Run time: 10556.529 secs,  Cache miss: 162 times,   SpeedUp: 3.4063977847264
+
+ Background = true, Global LRU = true, Time threshold = 360
+ Run time: 11659.406 secs,  Cache miss: 170 times,   SpeedUp: 3.0841825904338522
+
+ ----------------------------- Reduced speed 20 ----------------------------------------------------
+ Original
+ Run time: 48243.997 secs,  Cache miss: 673 times,   SpeedUp: 1.0
+
+ Background = true, Global LRU = false, Time threshold = 100000000
+ Run time: 14815.681 secs,  Cache miss: 189 times,   SpeedUp: 3.2562794109835385  <-
+
+ Background = true, Global LRU = true, Time threshold = 200
+ Run time: 17568.182 secs,  Cache miss: 189 times,   SpeedUp: 2.7461007063792944
+
+ Background = true, Global LRU = true, Time threshold = 220
+ Run time: 16297.773 secs,  Cache miss: 188 times,   SpeedUp: 2.9601588511510135
+
+ Background = true, Global LRU = true, Time threshold = 240
+ Run time: 16728.246 secs,  Cache miss: 188 times,   SpeedUp: 2.8839841905720425
+
+ Background = true, Global LRU = true, Time threshold = 260
+ Run time: 17400.248 secs,  Cache miss: 187 times,   SpeedUp: 2.772603988173042
+
+ Background = true, Global LRU = true, Time threshold = 280
+ Run time: 17277.201 secs,  Cache miss: 187 times,   SpeedUp: 2.7923502771079645
+
+ Background = true, Global LRU = true, Time threshold = 320
+ Run time: 16776.075 secs,  Cache miss: 183 times,   SpeedUp: 2.8757618811313135
+
+ Background = true, Global LRU = true, Time threshold = 340
+ Run time: 16235.724 secs,  Cache miss: 172 times,   SpeedUp: 2.971471860447985
+
+ Background = true, Global LRU = true, Time threshold = 360
+ Run time: 16098.974 secs,  Cache miss: 171 times,   SpeedUp: 2.9967125234191943
+
+ Background = true, Global LRU = true, Time threshold = 380
+ Run time: 17048.557 secs,  Cache miss: 171 times,   SpeedUp: 2.829799436984608
+
+ Background = true, Global LRU = true, Time threshold = 400
+ Run time: 17448.007 secs,  Cache miss: 172 times,   SpeedUp: 2.7650147664429525

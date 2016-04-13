@@ -1,0 +1,89 @@
+----------------------------- Reduced speed 1 ----------------------------------------------------
+Original
+Run time: 2025.08 secs,  Cache miss: 654 times,   SpeedUp: 1.0
+
+Background = true, Global LRU = false, Time threshold = 100000000,  Client in LocalFirst mode
+Run time: 803.501 secs,  Cache miss: 0 times,   SpeedUp: 2.520320447641011  <-
+
+Background = true, Global LRU = true, Time threshold = 60,  Client in LocalFirst mode
+Run time: 810.42 secs,  Cache miss: 0 times,   SpeedUp: 2.498803089755929
+
+----------------------------- Reduced speed 2 ----------------------------------------------------
+Original
+Run time: 3280.909 secs,  Cache miss: 653 times,   SpeedUp: 1.0
+
+Background = true, Global LRU = false, Time threshold = 100000000,  Client in LocalFirst mode
+Run time: 807.172 secs,  Cache miss: 0 times,   SpeedUp: 4.064696248135466  <-
+
+Background = true, Global LRU = true, Time threshold = 60,  Client in LocalFirst mode
+Run time: 813.717 secs,  Cache miss: 0 times,   SpeedUp: 4.0320025266769655
+
+----------------------------- Reduced speed 3 ----------------------------------------------------
+Original
+Run time: 4764.294 secs,  Cache miss: 657 times,   SpeedUp: 1.0
+
+Background = true, Global LRU = false, Time threshold = 100000000,  Client in LocalFirst mode
+Run time: 812.958 secs,  Cache miss: 0 times,   SpeedUp: 5.860442974913833
+
+Background = true, Global LRU = true, Time threshold = 60,  Client in LocalFirst mode
+Run time: 805.676 secs,  Cache miss: 0 times,   SpeedUp: 5.9134118429740985  <-
+
+----------------------------- Reduced speed 4 ----------------------------------------------------
+Original
+Run time: 6116.856 secs,  Cache miss: 654 times,   SpeedUp: 1.0
+
+Background = true, Global LRU = false, Time threshold = 100000000,  Client in LocalFirst mode
+Run time: 805.618 secs,  Cache miss: 0 times,   SpeedUp: 7.592749913730825
+
+Background = true, Global LRU = true, Time threshold = 60,  Client in LocalFirst mode
+Run time: 800.017 secs,  Cache miss: 0 times,   SpeedUp: 7.6459075244651045  <-
+
+----------------------------- Reduced speed 5 ----------------------------------------------------
+Original
+Run time: 7486.183 secs,  Cache miss: 652 times,   SpeedUp: 1.0
+
+Background = true, Global LRU = false, Time threshold = 100000000,  Client in LocalFirst mode
+Run time: 802.228 secs,  Cache miss: 0 times,   SpeedUp: 9.331739854505203  <-
+
+Background = true, Global LRU = true, Time threshold = 60,  Client in LocalFirst mode
+Run time: 814.687 secs,  Cache miss: 0 times,   SpeedUp: 9.189029651878574
+
+----------------------------- Reduced speed 8 ----------------------------------------------------
+Original
+Run time: 11742.852 secs,  Cache miss: 655 times,   SpeedUp: 1.0
+
+Background = true, Global LRU = false, Time threshold = 100000000,  Client in LocalFirst mode
+Run time: 795.669 secs,  Cache miss: 0 times,   SpeedUp: 14.758463632490397  <-
+
+Background = true, Global LRU = true, Time threshold = 60,  Client in LocalFirst mode
+Run time: 811.481 secs,  Cache miss: 0 times,   SpeedUp: 14.470889644982448
+
+----------------------------- Reduced speed 10 ----------------------------------------------------
+Original
+Run time: 14704.072 secs,  Cache miss: 652 times,   SpeedUp: 1.0
+
+Background = true, Global LRU = false, Time threshold = 100000000,  Client in LocalFirst mode
+Run time: 811.063 secs,  Cache miss: 0 times,   SpeedUp: 18.129383290817113  <-
+
+Background = true, Global LRU = true, Time threshold = 60,  Client in LocalFirst mode
+Run time: 826.48 secs,  Cache miss: 0 times,   SpeedUp: 17.791201238989448
+
+----------------------------- Reduced speed 15 ----------------------------------------------------
+Original
+Run time: 22154.076 secs,  Cache miss: 655 times,   SpeedUp: 1.0
+
+Background = true, Global LRU = false, Time threshold = 100000000,  Client in LocalFirst mode
+Run time: 805.898 secs,  Cache miss: 0 times,   SpeedUp: 27.489925524073765  <-
+
+Background = true, Global LRU = true, Time threshold = 60,  Client in LocalFirst mode
+Run time: 819.824 secs,  Cache miss: 0 times,   SpeedUp: 27.022965904877147
+
+----------------------------- Reduced speed 20 ----------------------------------------------------
+Original
+Run time: 29607.562 secs,  Cache miss: 651 times,   SpeedUp: 1.0
+
+Background = true, Global LRU = false, Time threshold = 100000000,  Client in LocalFirst mode
+Run time: 856.396 secs,  Cache miss: 0 times,   SpeedUp: 34.57227964633184
+
+Background = true, Global LRU = true, Time threshold = 60,  Client in LocalFirst mode
+Run time: 804.261 secs,  Cache miss: 0 times,   SpeedUp: 36.81337526002132  <-

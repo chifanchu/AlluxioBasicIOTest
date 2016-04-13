@@ -51,6 +51,7 @@ public class RandomWorkloadGenerator {
         // client1: 4G 30 files(100~160MB) 1000 operations
         // client2: 1G 20 files(40~55MB) 6000 operations
         // client3: 1G 10 files(80~120MB) 2500 operations
+        /*
         final int fileNameBase = 0;
         final int totalFileNumber = 30;
         final int fileSizeMin = 100; //MB
@@ -60,6 +61,20 @@ public class RandomWorkloadGenerator {
         final int fewReadOperation = 1;
         final int rareReadOperation = 1;
         writeOption = " cache";
+        */
+
+        // scenario 4: for NDR calibration
+        // 2G 10 files(150~250MB)
+        final int fileNameBase = 0;
+        final int totalFileNumber = 10;
+        final int fileSizeMin = 150; //MB
+        final int fileSizeMax = 250; //MB
+        final int totalReadOperation = 100;
+        final int manyReadOperation = 1;
+        final int fewReadOperation = 1;
+        final int rareReadOperation = 1;
+        writeOption = " cache";
+
 
         int totalFileSize = 0;
         List<Integer> tmps = new ArrayList<Integer>();

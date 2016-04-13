@@ -1,0 +1,89 @@
+educed speed 1 ----------------------------------------------------
+Original
+Run time: 1857.924 secs,  Cache miss: 655 times,   SpeedUp: 1.0
+
+Background = true, Global LRU = false, Time threshold = 100000000
+Run time: 914.609 secs,  Cache miss: 30 times,   SpeedUp: 2.031386089574889
+
+Background = true, Global LRU = true, Time threshold = 60
+Run time: 909.294 secs,  Cache miss: 30 times,   SpeedUp: 2.043259935730358  <-
+
+----------------------------- Reduced speed 2 ----------------------------------------------------
+Original
+Run time: 3233.334 secs,  Cache miss: 654 times,   SpeedUp: 1.0
+
+Background = true, Global LRU = false, Time threshold = 100000000
+Run time: 930.763 secs,  Cache miss: 30 times,   SpeedUp: 3.473853172074953  <-
+
+Background = true, Global LRU = true, Time threshold = 60
+Run time: 977.485 secs,  Cache miss: 30 times,   SpeedUp: 3.307809326997345
+
+----------------------------- Reduced speed 3 ----------------------------------------------------
+Original
+Run time: 4664.323 secs,  Cache miss: 659 times,   SpeedUp: 1.0
+
+Background = true, Global LRU = false, Time threshold = 100000000
+Run time: 998.844 secs,  Cache miss: 30 times,   SpeedUp: 4.669721197704547
+
+Background = true, Global LRU = true, Time threshold = 60
+Run time: 993.231 secs,  Cache miss: 30 times,   SpeedUp: 4.696110975191068  <-
+
+----------------------------- Reduced speed 4 ----------------------------------------------------
+Original
+Run time: 6079.576 secs,  Cache miss: 659 times,   SpeedUp: 1.0
+
+Background = true, Global LRU = false, Time threshold = 100000000
+Run time: 1063.105 secs,  Cache miss: 30 times,   SpeedUp: 5.718697588667159  <-
+
+Background = true, Global LRU = true, Time threshold = 60
+Run time: 1067.278 secs,  Cache miss: 30 times,   SpeedUp: 5.696337786406166
+
+----------------------------- Reduced speed 5 ----------------------------------------------------
+Original
+Run time: 7494.251 secs,  Cache miss: 654 times,   SpeedUp: 1.0
+
+Background = true, Global LRU = false, Time threshold = 100000000
+Run time: 1132.533 secs,  Cache miss: 30 times,   SpeedUp: 6.61724735614768  <-
+
+Background = true, Global LRU = true, Time threshold = 60
+Run time: 1137.887 secs,  Cache miss: 30 times,   SpeedUp: 6.586111801962761
+
+----------------------------- Reduced speed 8 ----------------------------------------------------
+Original
+Run time: 11804.288 secs,  Cache miss: 657 times,   SpeedUp: 1.0
+
+Background = true, Global LRU = false, Time threshold = 100000000
+Run time: 1336.424 secs,  Cache miss: 30 times,   SpeedUp: 8.83274170472844
+
+Background = true, Global LRU = true, Time threshold = 60
+Run time: 1333.357 secs,  Cache miss: 30 times,   SpeedUp: 8.853058858205268  <-
+
+----------------------------- Reduced speed 10 ----------------------------------------------------
+Original
+Run time: 14654.325 secs,  Cache miss: 654 times,   SpeedUp: 1.0
+
+Background = true, Global LRU = false, Time threshold = 100000000
+Run time: 1463.483 secs,  Cache miss: 30 times,   SpeedUp: 10.013320961022439
+
+Background = true, Global LRU = true, Time threshold = 60
+Run time: 1455.688 secs,  Cache miss: 30 times,   SpeedUp: 10.066940855458038  <-
+
+----------------------------- Reduced speed 15 ----------------------------------------------------
+Original
+Run time: 22740.47 secs,  Cache miss: 664 times,   SpeedUp: 1.0
+
+Background = true, Global LRU = false, Time threshold = 100000000
+Run time: 1762.276 secs,  Cache miss: 30 times,   SpeedUp: 12.904034328334495  <-
+
+Background = true, Global LRU = true, Time threshold = 60
+Run time: 1786.691 secs,  Cache miss: 30 times,   SpeedUp: 12.72770165630207
+
+----------------------------- Reduced speed 20 ----------------------------------------------------
+Original
+Run time: 29730.076 secs,  Cache miss: 658 times,   SpeedUp: 1.0
+
+Background = true, Global LRU = false, Time threshold = 100000000
+Run time: 2081.883 secs,  Cache miss: 30 times,   SpeedUp: 14.280377907884354  <-
+
+Background = true, Global LRU = true, Time threshold = 60
+Run time: 2106.432 secs,  Cache miss: 30 times,   SpeedUp: 14.113950034940602

@@ -1,0 +1,21 @@
+create /tmp0.txt 153 cache
+create /file0.txt 153
+create /tmp1.txt 199 cache
+create /file1.txt 199
+create /tmp2.txt 163 cache
+create /file2.txt 163
+create /tmp3.txt 167 cache
+create /file3.txt 167
+create /tmp4.txt 218 cache
+create /file4.txt 218
+create /tmp5.txt 220 cache
+create /file5.txt 220
+create /tmp6.txt 160 cache
+create /file6.txt 160
+create /tmp7.txt 234 cache
+create /file7.txt 234
+create /tmp8.txt 194 cache
+create /file8.txt 194
+create /tmp9.txt 236 cache
+create /file9.txt 236
+Total file size: 1944
