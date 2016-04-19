@@ -21,7 +21,7 @@ public class RandomWorkloadGenerator {
         String writeOption = "";
 
         // scenario 1: total file size smaller than available memory space
-        /*
+
         final int fileNameBase = 0;
         final int totalFileNumber = 30;
         final int fileSizeMin = 150; //MB
@@ -30,7 +30,7 @@ public class RandomWorkloadGenerator {
         final int manyReadOperation = 1;
         final int fewReadOperation = 1;
         final int rareReadOperation = 1;
-        */
+
 
         // scenario 2: total file size exceed available memory space
         // 2G inactive        --> first 10 files
@@ -65,6 +65,7 @@ public class RandomWorkloadGenerator {
 
         // scenario 4: for NDR calibration
         // 2G 10 files(150~250MB)
+        /*
         final int fileNameBase = 0;
         final int totalFileNumber = 10;
         final int fileSizeMin = 150; //MB
@@ -74,7 +75,7 @@ public class RandomWorkloadGenerator {
         final int fewReadOperation = 1;
         final int rareReadOperation = 1;
         writeOption = " cache";
-
+        */
 
         int totalFileSize = 0;
         List<Integer> tmps = new ArrayList<Integer>();

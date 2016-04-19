@@ -249,9 +249,6 @@ public class AlluxioBasicIO {
         BufferedReader reader = new BufferedReader(new FileReader("prepare.txt"));
         String line;
 
-        //line = reader.readLine();
-        //mReducedSpeedMultiplier = Integer.parseInt(line);
-
         String dummy = "";
         while((line = reader.readLine()) != null) {
             String[] components = line.split(" ");
@@ -260,11 +257,11 @@ public class AlluxioBasicIO {
             if (components[0].equals("create")) {
                 int fileSize = Integer.parseInt(components[2]);
                 if (fileName.startsWith("/tmp")) {
-                    //if (components.length >= 4 && components[3].equals("cache")) {
-                    //    writeLargeFile(new AlluxioURI(fileName), sLongMsg, fileSize, WriteType.CACHE_THROUGH, workerHostName);
-                    //} else {
+                    if (components.length >= 4 && components[3].equals("cache")) {
+                        writeLargeFile(new AlluxioURI(fileName), sLongMsg, fileSize, WriteType.CACHE_THROUGH, workerHostName);
+                    } else {
                         writeLargeFile(new AlluxioURI(fileName), sLongMsg, fileSize, WriteType.THROUGH, workerHostName);
-                    //}
+                    }
                 } else  {
                     dummy = fileName;
                     mFileSizeMap.put(fileName, fileSize);
@@ -353,9 +350,6 @@ public class AlluxioBasicIO {
         sLongMsg = builder.toString();
 
         String workerHostName = NON_SPECIFIED_WORKER;
-        //String workerHostName = ROUND_ROBIN;
-        //String workerHostName = "cp-3-mgmt-lan";
-        //String workerHostName = MASTER;
 
         if (args.length>0) {
             alluIO.mReducedSpeedMultiplier = Integer.parseInt(args[0]);
